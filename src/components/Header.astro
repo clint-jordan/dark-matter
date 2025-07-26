@@ -1,0 +1,19 @@
+---
+import { getConfigurationCollection } from "../lib/utils";
+import Anchor from "./common/Anchor.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+
+const { data: config } = await getConfigurationCollection();
+---
+
+<header>
+  <nav>
+    <div>
+      {
+        Object.entries(config.menu).map((i) => (
+          <a href={i[1]}> {i[0]} </a>
+        ))
+      }
+    </div>
+  </nav>
+</header>
