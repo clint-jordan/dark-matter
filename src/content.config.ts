@@ -159,7 +159,7 @@ const configuration = defineCollection({
     texts: z.object({
       
       // The text used when displaying the articles section on the homepage.
-      articlesName: z.string().default("Articles"),
+      articlesName: z.string().default("Posts"),
 
       // The text used when displaying the projects section on the homepage.
       projectsName: z.string().default("Projects"),
