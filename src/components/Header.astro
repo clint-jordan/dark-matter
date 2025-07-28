@@ -4,16 +4,59 @@ import Anchor from "./common/Anchor.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 
 const { data: config } = await getConfigurationCollection();
+const currentPath = Astro.url.pathname;
 ---
 
-<header>
-  <nav>
-    <div>
-      {
-        Object.entries(config.menu).map((i) => (
-          <a href={i[1]}> {i[0]} </a>
-        ))
-      }
-    </div>
-  </nav>
+<header class="flex justify-center items-center py-6">
+  <div class="flex justify-between items-center w-full max-w-4xl px-6">
+    <div class="text-xl font-bold">
+      <a href="/">{config.personal.name}</a>
+      <span class="cursor-blink">❚</span>
+    </div> 
+
+    <nav class="flex gap-6">
+        {
+          Object.entries(config.menu).map((i) => {
+          const isActive = currentPath === i[1];
+            return (<a href={i[1]} class={`nav-link ${isActive ? 'active' : ''}`}>{i[0]}</a>);
+          })
+        }
+    </nav>
+  </div>
 </header>
+
+<style>
+  .cursor-blink {
+    animation: blink 10s infinite;
+  }
+  
+  @keyframes blink {
+    0%, 10% { opacity: 0; }
+    11%, 20% { opacity: 1; }
+    21%, 30% { opacity: 0; }
+    31%, 40% { opacity: 1; }
+    41%, 50% { opacity: 0; }
+    51%, 100% { opacity: 1; }
+  }
+
+  .nav-link {
+    position: relative;
+    text-decoration: none;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: currentColor;
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+  }
+</style>

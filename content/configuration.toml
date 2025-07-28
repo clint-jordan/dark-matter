@@ -6,21 +6,42 @@ devPort = 4321
 baseUrl = "https://clint-jordan.github.io/dark-matter"
 
 [_.globalMeta]
-title = "clint-jordan"
+title = "dark-matter"
 description = ""
 longDescription = ""
 cardImage = "/card-image.webp"
 keywords = ["web development", "design", "technology"]
 
 [_.blogMeta]
-title = "clint-jordan"
+title = "John Doe Blog"
 description = ""
 longDescription = ""
 cardImage = "/card-image.webp"
 keywords = ["web development", "design", "technology"]
 
 [_.projectMeta]
-title = "clint-jordan"
+title = "dark-matter"
+description = ""
+longDescription = ""
+cardImage = "/card-image.webp"
+keywords = ["web development", "design", "technology"]
+
+[_.notesMeta]
+title = "dark-matter"
+description = ""
+longDescription = ""
+cardImage = "/card-image.webp"
+keywords = ["web development", "design", "technology"]
+
+[_.Meta]
+title = "dark-matter"
+description = ""
+longDescription = ""
+cardImage = "/card-image.webp"
+keywords = ["web development", "design", "technology"]
+
+[_.searchMeta]
+title = "dark-matter"
 description = ""
 longDescription = ""
 cardImage = "/card-image.webp"
@@ -33,20 +54,20 @@ longDescription = "The page you are looking for does not exist. Maybe it never e
 cardImage = "/card-image.webp"
 
 [_.hero]
-title = "Clint Jordan"
+title = "John Doe"
 subtitle = "A profound defining statement"
 image = "/card-image.webp"
 ctaText = "View Projects"
 ctaUrl = "/projects"
 
 [_.personal]
-name = "clint-jordan"
+name = "John Doe"
 githubProfile = "https://github.com/clint-jordan"
 twitterProfile = "https://twitter.com"
 linkedinProfile = "https://linkedin.com/"
 
 [_.texts]
-articlesName = "Blog"
+blogName = "Blog"
 projectsName = "Projects"
 viewAll = "View All"
 noArticles = "No articles found."
@@ -56,3 +77,5 @@ noProjects = "No projects found."
 home = "/"
 projects = "/projects"
 blog = "/blog"
+notes = "/notes"
+search = "/search"

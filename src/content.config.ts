@@ -99,6 +99,25 @@ const configuration = defineCollection({
       keywords: z.array(z.string()).optional(),
     }),
 
+    // The project page's metadata.
+    notesMeta: z.object({
+
+      // The title of the page, used in the HTML `<title>` tag and Open Graph metadata.
+      title: z.string(),
+      
+      // The short description of the page, used in Open Graph metadata and as a fallback for SEO.
+      description: z.string(),
+      
+      // The long description of the page, used in Open Graph metadata and as a fallback for SEO.
+      longDescription: z.string().optional(),
+      
+      // The URL or path of the card image for social media sharing.
+      cardImage: z.string().optional(),
+      
+      // Keywords for SEO, used in the `<meta name="keywords">` tag.
+      keywords: z.array(z.string()).optional(),
+    }),
+
     // The hero section configuration.
     hero: z.object({
       
@@ -162,6 +181,8 @@ const configuration = defineCollection({
       home: z.string().default("/"),
       projects: z.string().default("/projects"),
       blog: z.string().default("/blog"),
+      notes: z.string().default("/notes"),
+      search: z.string().default("/search"),
       // Add other menu items here
     }),
   }),
@@ -268,4 +289,54 @@ const project = defineCollection({
     }),
 });
 
-export const collections = { blog, project, configuration };
+// Loader and schema for the notes collection.
+// It loads markdown files from the `content/projects` directory and defines the schema for each project.
+const notes = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./content/notes" }),
+  schema: z.object({
+    
+    // The title of the project.
+    title: z.string(),
+    
+    // The slug for the project, used in the URL.
+    slug: z.string().optional(),
+    
+    // The short description of the project, used in Open Graph metadata and as a fallback for SEO.
+    description: z.string(),
+
+    // The long description of the project, used in Open Graph metadata and as a fallback for SEO.
+    longDescription: z.string().optional(),
+
+    // The URL or path of the card image for social media sharing.
+    cardImage: z.string().optional(),
+
+    // The tags associated with the project, used for categorization and filtering.
+    tags: z.array(z.string()).optional(),
+
+    // The github repository URL for the project.
+    githubUrl: z.string().url().optional(),
+
+    // The live demo URL for the project, if applicable.
+    liveDemoUrl: z.string().url().optional(),
+
+    // The timestamp of the project, used for sorting and displaying the date.
+    timestamp: z.date().transform((val) => new Date(val)),
+
+    // Whether the project is featured on the homepage.
+    featured: z.boolean().default(false),
+  }).transform((data) => {
+      const slug =
+        data.slug ??
+        data.title
+          .toLowerCase()
+          .replace(/\s+/g, "-")
+          .replace(/[^\w-]/g, "");
+      const newData = {
+        ...data,
+        slug,
+      };
+      return newData;
+    }),
+});
+
+export const collections = { blog, project, notes, configuration };
