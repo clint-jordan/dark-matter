@@ -31,145 +31,109 @@
 
 @theme {
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
-  --font-display: "press-start-2p", ui-monospace, monospace;
-  --font-serif: "Literata Variable", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --color-dm-dark: var(--color-neutral-900);
-  --color-dm-dark-opaque: oklch(from var(--color-neutral-900) l c h / 0.5);
-  --color-dm-light: var(--color-neutral-100);
-  --color-dm-light-opaque: oklch(from var(--color-neutral-100) l c h / 0.5);
-  --color-dm-dark-muted: var(--color-neutral-600);
-  --color-dm-light-muted: var(--color-neutral-400);
-  --color-dm-accent-light: var(--color-emerald-400);
-  --color-dm-accent-light-muted: var(--color-emerald-300);
-  --color-dm-accent-dark: var(--color-emerald-600);
-  --color-dm-accent-dark-muted: var(--color-emerald-800);
+  --font-display: "IBM Plex Mono", ui-monospace, monospace;
+  --font-serif: "IBM Plex Mono", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --color-theme-dark: var(--color-neutral-900);
+  --color-theme-dark-opaque: oklch(from var(--color-neutral-900) l c h / 0.5);
+  --color-theme-light: var(--color-neutral-100);
+  --color-theme-light-opaque: oklch(from var(--color-neutral-100) l c h / 0.5);
+  --color-theme-dark-muted: var(--color-neutral-600);
+  --color-theme-light-muted: var(--color-neutral-400);
+  --color-theme-accent-light: var(--color-emerald-400);
+  --color-theme-accent-light-muted: var(--color-emerald-300);
+  --color-theme-accent-dark: var(--color-emerald-600);
+  --color-theme-accent-dark-muted: var(--color-emerald-800);
 }
 
 @layer base {
   :root {
-    --dm-stroke: 2px;
-    --dm-offset: 6px;
-    --dm-transition-duration: 0.15s;
-    --dm-transition-timing-function: ease-in-out;
+    --theme-stroke: 2px;
+    --theme-offset: 6px;
+    --theme-transition-duration: 0.15s;
+    --theme-transition-timing-function: ease-in-out;
   }
 
   ::selection {
-    background-color: var(--color-dm-accent-light);
-    color: var(--color-dm-dark-muted);
+    background-color: var(--color-theme-accent-light);
+    color: var(--color-theme-dark-muted);
   }
 
-  .dm-transition {
+  .theme-transition {
     @media (prefers-reduced-motion: no-preference) {
       transition:
-        background-color var(--dm-transition-duration) var(--dm-transition-timing-function),
-        color var(--dm-transition-duration) var(--dm-transition-timing-function),
-        fill var(--dm-transition-duration) var(--dm-transition-timing-function),
-        border-color var(--dm-transition-duration) var(--dm-transition-timing-function),
-        transform var(--dm-transition-duration) var(--dm-transition-timing-function);
+        background-color var(--theme-transition-duration) var(--theme-transition-timing-function),
+        color var(--theme-transition-duration) var(--theme-transition-timing-function),
+        fill var(--theme-transition-duration) var(--theme-transition-timing-function),
+        border-color var(--theme-transition-duration) var(--theme-transition-timing-function),
+        transform var(--theme-transition-duration) var(--theme-transition-timing-function);
     }
   }
 
-  .dm-bg {
-    background-color: var(--color-dm-light);
+  .theme-bg {
+    background-color: var(--color-theme-light);
     :where(.dark, .dark *) & {
-      background-color: var(--color-dm-dark);
+      background-color: var(--color-theme-dark);
     }
   }
 
-  .-dm-bg {
-    background-color: var(--color-dm-dark);
+  .-theme-bg {
+    background-color: var(--color-theme-dark);
     :where(.dark, .dark *) & {
-      background-color: var(--color-dm-light);
+      background-color: var(--color-theme-light);
+    }
+  }
+  .-theme-muted-bg {
+    background-color: var(--color-theme-dark-muted);
+    :where(.dark, .dark *) & {
+      background-color: var(--color-theme-light-muted);
     }
   }
   
-  .dm-text {
-    color: var(--color-dm-dark);
+  .theme-text {
+    color: var(--color-theme-dark);
     :where(.dark, .dark *) & {
-      color: var(--color-dm-light);
+      color: var(--color-theme-light);
     }
   }
 
-  .-dm-text {
-    color: var(--color-dm-light);
+  .-theme-text {
+    color: var(--color-theme-light);
     :where(.dark, .dark *) & {
-      color: var(--color-dm-dark);
+      color: var(--color-theme-dark);
     }
   }
 
-  .dm-muted {
-    color: var(--color-dm-dark-muted);
+  .theme-muted {
+    color: var(--color-theme-dark-muted);
     :where(.dark, .dark *) & {
-      color: var(--color-dm-light-muted);
+      color: var(--color-theme-light-muted);
     }
   }
 
-  .dm-fill {
-    fill: var(--color-dm-dark);
+  .theme-fill {
+    fill: var(--color-theme-dark);
     &:where(.dark, .dark *) {
-      fill: var(--color-dm-light);
+      fill: var(--color-theme-light);
     }
   }
 
-  .dm-text-muted {
-    color: var(--color-dm-dark-muted);
+  .theme-text-muted {
+    color: var(--color-theme-dark-muted);
     &:where(.dark, .dark *) {
-      color: var(--color-dm-light-muted);
+      color: var(--color-theme-light-muted);
     }
   }
 
-  .dm-border-b {
-    border-bottom: var(--dm-stroke) solid;
-    border-color: var(--color-dm-dark);
+  .theme-border-b {
+    border-bottom: var(--theme-stroke) solid;
+    border-color: var(--color-theme-dark);
     &:where(.dark, .dark *) {
-      border-color: var(--color-dm-light);
+      border-color: var(--color-theme-light);
     }
   }
 
-  .dm-offset {
-    text-underline-offset: var(--dm-offset);
-  }
-
-  .hover-dm-dotted-grid:hover::before {
-    --dot-bg: var(--color-dm-light);
-    --dot-color: var(--color-dm-dark-muted);
-    --dot-size: 1.5px;
-    --dot-space: 16px;
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-    z-index: -1;
-    background:
-      linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) bottom right / var(--dot-space) var(--dot-space),
-      linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) bottom right / var(--dot-space) var(--dot-space),
-      var(--dot-color);
-    pointer-events: none;
-  }
-
-  :where(.dark, .dark *) .hover-dm-dotted-grid:hover::before {
-    --dot-bg: var(--color-dm-dark);
-    --dot-color: var(--color-dm-light-muted);
-  }
-
-  .hover-dm-dotted-grid:hover::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-    z-index: -1;
-    background: linear-gradient(159deg, var(--color-dm-light) 0%, var(--color-dm-light) 50%, var(--color-dm-light-opaque) 100%);
-    pointer-events: none;
-  }
-
-  :where(.dark, .dark *) .hover-dm-dotted-grid:hover::after {
-    background: linear-gradient(159deg, var(--color-dm-dark) 0%, var(--color-dm-dark) 50%, var(--color-dm-dark-opaque) 100%);
+  .theme-offset {
+    text-underline-offset: var(--theme-offset);
   }
 
   .opsz {

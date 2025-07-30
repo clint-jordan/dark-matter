@@ -12,13 +12,15 @@ const { url, external, class: className } = Astro.props;
 <a
   href={url}
   class:list={[
-    "zag-offset underline font-medium flex items-center focus:outline-2 focus:outline-offset-2 focus:outline-zag-dark dark:focus:outline-zag-light",
+    "theme-offset font-medium flex items-center focus:outline-2 focus:outline-offset-2 focus:outline-theme-dark dark:focus:outline-theme-light",
     className,
   ]}
   target={external ? "_blank" : "_self"}
   aria-label={Astro.props["aria-label"]}
 >
-  <slot />
+  <span class="anchor-hover">
+    <slot />
+  </span>
   {
     external ? (
       <svg
@@ -27,7 +29,7 @@ const { url, external, class: className } = Astro.props;
         viewBox="0 0 512 512"
       >
         <path
-          class="zag-fill zag-transition"
+          class="theme-fill theme-transition"
           fill-rule="evenodd"
           d="M362.666 149.333V320H320l-.001-97.831l-154.51 154.51l-30.169-30.17L289.829 192h-97.83v-42.666z"
         />
@@ -35,3 +37,26 @@ const { url, external, class: className } = Astro.props;
     ) : null
   }
 </a>
+
+<style>
+  .anchor-hover {
+    position: relative;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .anchor-hover::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: currentColor;
+    transition: width 0.3s ease;
+  }
+
+  .anchor-hover:hover::after {
+    width: 100%;
+  }
+</style>

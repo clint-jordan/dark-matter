@@ -1,0 +1,32 @@
+---
+import { getCollection, render } from "astro:content";
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import { getConfigurationCollection, getBaseUrl } from "../../lib/utils";
+
+export async function getStaticPaths() {
+  const notes = await getCollection("notes");
+  const { data: config } = await getConfigurationCollection();
+  const baseUrl = await getBaseUrl();
+ 
+  
+  return notes.map((note) => ({
+    params: { id: note.data.slug },
+    props: { 
+      note: {
+        ...note,
+        data: {
+          ...note.data,
+          url: `${baseUrl}/blog/${note.data.slug}`,
+        },
+      },
+    },
+  }));
+}
+
+const { note } = Astro.props;
+const { Content } = await render(note);
+---
+
+<BlogLayout frontmatter={note.data}>
+  <Content />
+</BlogLayout>

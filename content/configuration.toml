@@ -70,7 +70,7 @@ linkedinProfile = "https://linkedin.com/"
 blogName = "Blog"
 projectsName = "Projects"
 viewAll = "View All"
-noArticles = "No articles found."
+noPosts = "No posts found."
 noProjects = "No projects found."
 
 [_.menu]
