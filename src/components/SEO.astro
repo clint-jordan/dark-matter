@@ -1,0 +1,47 @@
+---
+export interface Props {
+  title: string;
+  titleSuffix?: string;
+  description: string;
+  longDescription?: string;
+  keywords?: string[];
+  cardImage?: string;
+  url: string;
+  type?: string;
+}
+
+const { 
+  title, 
+  titleSuffix,
+  description, 
+  longDescription, 
+  keywords, 
+  cardImage, 
+  url, 
+  type = "summary_large_image" 
+} = Astro.props;
+---
+
+<title>{title}{titleSuffix ? ` • ${titleSuffix}` : ''}</title>
+<meta
+  name="description"
+  content={longDescription ?? description}
+/>
+<meta property="og:title" content={`${title}${titleSuffix ? ` • ${titleSuffix}` : ''}`} />
+<meta property="og:description" content={description} />
+{keywords && (
+  <meta name="keywords" content={keywords.join(", ")} />
+)}
+{cardImage && (
+  <meta property="og:image" content={cardImage} />
+)}
+<meta property="og:url" content={url} />
+<meta name="twitter:card" content={type} />
+<meta name="twitter:title" content={`${title}${titleSuffix ? ` • ${titleSuffix}` : ''}`} />
+<meta name="twitter:description" content={description} />
+{cardImage && (
+  <meta name="twitter:image" content={cardImage} />
+)}
+<meta http-equiv="content-language" content="en" />
+<meta name="language" content="English" />
+<link rel="canonical" href={url} />

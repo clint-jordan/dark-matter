@@ -1,16 +1,18 @@
 ---
 import { siteConfig } from "../site.config";
+import { getBaseUrl } from "../lib/utils";
 import Anchor from "./common/Anchor.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 
 const config = siteConfig;
 const currentPath = Astro.url.pathname;
+const baseUrl = await getBaseUrl();
 ---
 
 <header class="flex justify-center items-center py-6">
   <div class="flex justify-between items-center w-full max-w-4xl px-6">
     <div class="text-xl font-bold">
-      <a href="/">{config.personal.name}</a>
+      <a href={baseUrl}>{config.personal.name}</a>
       <span class="cursor-blink">❚</span>
     </div> 
 
@@ -18,7 +20,7 @@ const currentPath = Astro.url.pathname;
         {
           Object.entries(config.menu).map((i) => {
           const isActive = currentPath === i[1];
-            return (<a href={i[1]} class={`nav-link ${isActive ? 'active' : ''}`}>{i[0]}</a>);
+            return (<a href={`${baseUrl}${i[1]}`} class={`nav-link ${isActive ? 'active' : ''}`}>{i[0]}</a>);
           })
         }
     </nav>
