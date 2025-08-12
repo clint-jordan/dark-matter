@@ -1,15 +1,15 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
-
-// Import site configuration to get the dev port
 import { siteConfig } from "./src/site.config";
-const port = siteConfig.site.devPort || 4321;
 
 // https://astro.build/config
 export default defineConfig({
+  site: siteConfig.site.site,
+  base: siteConfig.site.base,
+
   server: {
-    port: port,
+    port: siteConfig.site.devPort || 4321,
     host: true,
   },
   vite: {

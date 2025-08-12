@@ -18,14 +18,3 @@ export const processDate = (date: Date) => {
   const year = date.getFullYear();
   return `${monthSmall} ${day}, ${year}`;
 };
-
-/**
- * Gets the base URL for the site, prioritizing environment variables over content configuration.
- * @returns the base URL string
- */
-export const getBaseUrl = async (): Promise<string> => {
-  if (import.meta.env.DEV) {
-    return `http://localhost:${siteConfig.site.devPort}`;
-  }
-  return siteConfig.site.baseUrl;
-}

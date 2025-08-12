@@ -2,7 +2,8 @@
 export const siteConfig = {
   site: {
     devPort: 4321,
-    baseUrl: "https://clint-jordan.github.io/dark-matter"
+    site: "https://clint-jordan.github.io",
+    base: "/dark-matter"
   },
   globalMeta: {
     title: "dark-matter",
@@ -77,9 +78,9 @@ export const siteConfig = {
   },
   menu: {
     home: "/",
-    projects: "/projects",
-    blog: "/blog",
-    notes: "/notes",
-    search: "/search"
+    projects: "/projects/",
+    blog: "/blog/",
+    notes: "/notes/",
+    search: "/search/"
   }
 };

@@ -1,12 +1,11 @@
 ---
 import { siteConfig } from "../site.config";
-import { getBaseUrl } from "../lib/utils";
 import Anchor from "./common/Anchor.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 
 const config = siteConfig;
 const currentPath = Astro.url.pathname;
-const baseUrl = await getBaseUrl();
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <header class="flex justify-center items-center py-6">

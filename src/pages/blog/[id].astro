@@ -1,11 +1,10 @@
 ---
 import { getCollection, render } from "astro:content";
 import BlogLayout from "../../layouts/BlogLayout.astro";
-import { getBaseUrl } from "../../lib/utils";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  const baseUrl = await getBaseUrl();
+  const baseUrl = import.meta.env.BASE_URL;
   
   return posts.map((post) => ({
     params: { id: post.data.slug },

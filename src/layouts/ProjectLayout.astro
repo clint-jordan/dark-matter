@@ -1,5 +1,5 @@
 ---
-import { processDate, getBaseUrl } from "../lib/utils";
+import { processDate } from "../lib/utils";
 import type { PostFrontmatter } from "../lib/types";
 import Section from "../components/common/Section.astro";
 import Prose from "../components/Prose.astro";
@@ -15,7 +15,7 @@ const publishDate = processDate(frontmatter.published);
 const updateDate = processDate(frontmatter.updated);
 const tags = frontmatter.tags;
 const config = siteConfig;
-const baseUrl = await getBaseUrl()
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <Layout>
