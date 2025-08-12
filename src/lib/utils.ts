@@ -2,25 +2,17 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import { defineCollection, z } from "astro:content";
 import { file, glob } from "astro/loaders";
 
-let configCache: CollectionEntry<'configuration'> | null = null;
 import type { collections } from "../content.config";
-import { contentTypes } from "../content.config";
+import { contentTypes, siteConfig } from "../content.config";
 
 /**
- * Retrieves the configuration collection entry from the content directory.
- * It checks if the configuration is already cached to avoid multiple reads.
- * There can only be one configuration file, so it throws an error if there are multiple or none.
- * @returns the configuration collection entry
+ * Retrieves the site configuration.
+ * @returns the site configuration object
  */
-export const getConfigurationCollection = async (): Promise<CollectionEntry<'configuration'>> => {
-  if (configCache) return configCache;
-
-  const configs = await getCollection("configuration");
-  if (configs.length !== 1) {
-    throw new Error("Configuration file not found or multiple configuration files present.");
-  }
-  configCache = configs[0];
-  return configs[0];
+export const getConfigurationCollection = async () => {
+  return {
+    data: siteConfig
+  };
 }
 
 /**
