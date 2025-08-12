@@ -8,9 +8,10 @@ import { getConfigurationCollection, getBaseUrl } from "../../lib/utils";
 const { data: config } = await getConfigurationCollection();
 const baseUrl = await getBaseUrl();
 
-const posts = (await getCollection("blog")).map((post) => ({
+const collectionName = "blog"
+const posts = (await getCollection(collectionName)).map((post) => ({
   ...post.data,
-  url: `${baseUrl}/blog/${post.data.slug}`,
+  url: `${baseUrl}/${collectionName}/${post.data.slug}`,
 }));
 ---
 
