@@ -69,6 +69,7 @@ export const siteConfig = {
   texts: {
     blogName: "Blog",
     projectsName: "Projects",
+    notesName: "Notes",
     viewAll: "View All",
     noPosts: "No posts found.",
     noProjects: "No projects found."

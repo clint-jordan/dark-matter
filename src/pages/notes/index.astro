@@ -1,0 +1,73 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Section from "../../components/common/Section.astro";
+import PostSnippet from "../../components/PostSnippet.astro";
+import { getCollection } from "astro:content";
+import { getBaseUrl } from "../../lib/utils";
+import { siteConfig } from "../../site.config"
+
+const config = siteConfig;
+
+const baseUrl = await getBaseUrl();
+
+const collectionName = "notes"
+const posts = (await getCollection(collectionName)).map((post) => ({
+  ...post.data,
+  url: `${baseUrl}/${collectionName}/${post.data.slug}`,
+}));
+---
+
+<Layout>
+  <Fragment slot="head">
+    <title>{config.blogMeta.title}</title>
+    <meta
+      name="description"
+      content={config.blogMeta.longDescription ?? config.blogMeta.description}
+    />
+    <meta property="og:title" content={config.blogMeta.title} />
+    <meta
+      property="og:description"
+      content={config.blogMeta.description}
+    />
+    {config.blogMeta.keywords && (
+      <meta name="keywords" content={config.blogMeta.keywords.join(", ")} />
+    )}
+    {config.blogMeta.cardImage && (
+      <meta property="og:image" content={config.blogMeta.cardImage} />
+    )}
+    <meta property="og:url" content={`${baseUrl}/blog`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={config.blogMeta.title} />
+    <meta
+      name="twitter:description"
+      content={config.blogMeta.description}
+    />
+    {config.blogMeta.cardImage && (
+      <meta name="twitter:image" content={config.blogMeta.cardImage} />
+    )}
+    <meta http-equiv="content-language" content="en" />
+    <meta name="language" content="English" />
+    <link rel="canonical" href={`${baseUrl}/blog`} />
+  </Fragment>
+  <Section class="my-16">
+    <h1 class="text-3xl sm:text-4xl font-display pb-8">
+      {config.texts.notesName}
+    </h1>
+    {posts.length > 0 ? (
+      <div class="space-y-8">
+        {posts.map((post) => (
+          <PostSnippet
+            title={post.title}
+            description={post.description}
+            url={post.url}
+            tags={post.tags}
+            published={post.published}
+            updated={post.updated}
+          />
+        ))}
+      </div>
+    ) : (
+      <p>{config.texts.noPosts}</p>
+    )}
+  </Section>
+</Layout
