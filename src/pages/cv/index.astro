@@ -3,6 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import Section from "../../components/common/Section.astro";
 import SEO from "../../components/SEO.astro";
 import { siteConfig } from "../../site.config"
+import Hero from "../../components/cv/Hero.astro";
 
 const config = siteConfig;
 const baseUrl = import.meta.env.BASE_URL;
@@ -20,6 +21,7 @@ const baseUrl = import.meta.env.BASE_URL;
     />
   </Fragment>
   <Section class="my-16">
+    <Hero/>
     <h1 class="text-3xl sm:text-4xl font-display pb-8">
       Coming Soon...
     </h1>

@@ -1,0 +1,21 @@
+---
+import { siteConfig } from "../../site.config";
+
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<div class="flex justify-center items-center my-8 gap-10">
+  <img 
+    src={`${baseUrl}/hero.webp`} 
+    alt="Profile image" 
+    class="hero-image"
+  />
+  <div class="flex flex-col">
+    <h1 class="text-6xl sm:text-5xl font-display pb-2">
+      {siteConfig.personal.name}
+    </h1>
+    <div class="text-center">
+      Foo of all Foos
+    </div>
+  </div>
+</div>
