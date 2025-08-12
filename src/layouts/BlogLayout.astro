@@ -1,5 +1,6 @@
 ---
-import { getConfigurationCollection, processDate, getBaseUrl } from "../lib/utils";
+import { processDate, getBaseUrl } from "../lib/utils";
+import { siteConfig } from "../site.config";
 import type { PostFrontmatter } from "../lib/types";
 import Section from "../components/common/Section.astro";
 import Prose from "../components/Prose.astro";
@@ -12,7 +13,7 @@ const { frontmatter } = Astro.props;
 const publishDate = processDate(frontmatter.published);
 const updateDate = processDate(frontmatter.updated);
 const tags = frontmatter.tags;
-const { data: config } = await getConfigurationCollection();
+const config = siteConfig;
 const baseUrl = await getBaseUrl()
 ---
 

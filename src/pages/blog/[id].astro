@@ -1,11 +1,10 @@
 ---
 import { getCollection, render } from "astro:content";
 import BlogLayout from "../../layouts/BlogLayout.astro";
-import { getConfigurationCollection, getBaseUrl } from "../../lib/utils";
+import { getBaseUrl } from "../../lib/utils";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  const { data: config } = await getConfigurationCollection();
   const baseUrl = await getBaseUrl();
   
   return posts.map((post) => ({

@@ -3,9 +3,11 @@ import Layout from "../../layouts/Layout.astro";
 import Section from "../../components/common/Section.astro";
 import PostSnippet from "../../components/PostSnippet.astro";
 import { getCollection } from "astro:content";
-import { getConfigurationCollection, getBaseUrl } from "../../lib/utils";
+import { getBaseUrl } from "../../lib/utils";
+import { siteConfig } from "../../site.config"
 
-const { data: config } = await getConfigurationCollection();
+const config = siteConfig;
+
 const baseUrl = await getBaseUrl();
 
 const collectionName = "blog"
@@ -49,7 +51,7 @@ const posts = (await getCollection(collectionName)).map((post) => ({
   </Fragment>
   <Section class="my-16">
     <h1 class="text-3xl sm:text-4xl font-display pb-8">
-      {config.texts.postsName}
+      {config.texts.blogName}
     </h1>
     {posts.length > 0 ? (
       <div class="space-y-8">

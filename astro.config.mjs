@@ -2,9 +2,8 @@
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 
-// Import content collections and get the dev port from configuration
-import "./src/content.config";
-import { siteConfig } from "./src/content.config";
+// Import site configuration to get the dev port
+import { siteConfig } from "./src/site.config";
 const port = siteConfig.site.devPort || 4321;
 
 // https://astro.build/config

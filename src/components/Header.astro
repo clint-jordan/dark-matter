@@ -1,9 +1,9 @@
 ---
-import { getConfigurationCollection } from "../lib/utils";
+import { siteConfig } from "../site.config";
 import Anchor from "./common/Anchor.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 
-const { data: config } = await getConfigurationCollection();
+const config = siteConfig;
 const currentPath = Astro.url.pathname;
 ---
 

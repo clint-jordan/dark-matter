@@ -1,11 +1,10 @@
 ---
 import { getCollection, render } from "astro:content";
 import ProjectLayout from "../../layouts/ProjectLayout.astro";
-import { getConfigurationCollection, getBaseUrl } from "../../lib/utils";
+import { getBaseUrl } from "../../lib/utils";
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
-  const { data: config } = await getConfigurationCollection();
   const baseUrl = await getBaseUrl();
   
   return projects.map((project) => ({

@@ -1,19 +1,11 @@
+
 import { getCollection, type CollectionEntry } from "astro:content";
 import { defineCollection, z } from "astro:content";
-import { file, glob } from "astro/loaders";
+import { glob } from "astro/loaders";
 
 import type { collections } from "../content.config";
-import { contentTypes, siteConfig } from "../content.config";
-
-/**
- * Retrieves the site configuration.
- * @returns the site configuration object
- */
-export const getConfigurationCollection = async () => {
-  return {
-    data: siteConfig
-  };
-}
+import { contentTypes } from "../content.config";
+import { siteConfig } from "../site.config";
 
 /**
  * Processes the date of an article and returns a string representing the processed date.
@@ -32,10 +24,8 @@ export const processDate = (date: Date) => {
  * @returns the base URL string
  */
 export const getBaseUrl = async (): Promise<string> => {
-  const { data: config } = await getConfigurationCollection();
-
   if (import.meta.env.DEV) {
-    return `http://localhost:${config.site.devPort}`;
+    return `http://localhost:${siteConfig.site.devPort}`;
   }
-  return config.site.baseUrl;
+  return siteConfig.site.baseUrl;
 }
