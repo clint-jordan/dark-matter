@@ -1,2 +1,19 @@
 ---
+import { education } from "../../cv.config";
+import SectionHeader from "./SectionHeader.astro";
+
+const title = "Education"
 ---
+
+<div class="relative theme-text theme-transition flex flex-col gap-3 mb-8">
+  <SectionHeader title={title} />
+  {education.degrees.map(degree => (
+    <div class="flex flex-col ml-4">
+      <span class="font-medium">{degree.school}</span>
+      <div class="flex justify-between items-center">
+        <span><strong>{degree.title}</strong>{degree.honors && <>, <em>{degree.honors}</em></>}</span>
+        <span>{degree.dateObtained}</span>
+      </div>
+    </div>
+  ))}
+</div>

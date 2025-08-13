@@ -1,2 +1,29 @@
 ---
+// import { experience } from "../../cv.config";
+import type { Position } from "../../cv.config";
+import SectionHeader from "./SectionHeader.astro";
+import type { Experience } from "../../cv.config";
+
+export type Props = {
+  experience: Experience
+};
+
+const { experience } = Astro.props;
 ---
+
+<div class="relative theme-text theme-transition flex flex-col gap-3 mb-8">
+  <SectionHeader title={experience.sectionTitle} />
+  {experience.positions.map((position: Position) => (
+    <div class="flex justify-between items-center">
+      <span><strong>{position.title}</strong>, {position.employer}</span>
+      <span>{position.startDate} - {position.endDate}</span>
+    </div>
+    <div class="ml-4 mb-4">
+      <ul class="list-disc list-inside">
+        {position.bullets.map(bullet => (
+          <li>{bullet}</li>
+        ))}
+      </ul>
+    </div>
+  ))}
+</div>
