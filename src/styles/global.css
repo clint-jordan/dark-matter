@@ -171,4 +171,38 @@
   .cv-item-3 {
     list-style-type: circle;
   }
+
+  .cursor-blink {
+    animation: blink 10s infinite;
+  }
+  
+  @keyframes blink {
+    0%, 10% { opacity: 1; }
+    11%, 20% { opacity: 0; }
+    21%, 30% { opacity: 1; }
+    31%, 40% { opacity: 0; }
+    41%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  .nav-link {
+    position: relative;
+    text-decoration: none;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: currentColor;
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+  }
 }

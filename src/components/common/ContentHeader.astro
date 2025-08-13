@@ -1,0 +1,13 @@
+---
+export type Props = {
+  title: string;
+  cursor: boolean;
+};
+
+const { title, cursor = false } = Astro.props;
+---
+
+<h1 class="text-3xl sm:text-4xl font-display pb-10">
+  {title}
+  {cursor && <span class="cursor-blink">❚</span>}
+</h1>
