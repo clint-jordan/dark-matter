@@ -1,11 +1,12 @@
 ---
 // import { experience } from "../../cv.config";
-import type { Position } from "../../cv.config";
+import type { StrengthItem } from "../../cv.config";
 import SectionHeader from "./SectionHeader.astro";
+import StrengthList from "./StrengthList.astro";
 import type { Strengths } from "../../cv.config";
 
 export type Props = {
-  strengths: Strengths
+  strengths: Strengths;
 };
 
 const { strengths } = Astro.props;
@@ -13,33 +14,15 @@ const { strengths } = Astro.props;
 
 <div class="relative theme-text theme-transition flex flex-col gap-3 mb-8">
   <SectionHeader title={strengths.sectionTitle} />
-    <div class="ml-4 mb-4">
-              <ul class="cv-item-1 list-inside">
-          {strengths.strengths.map(bullet => (
-            <li>
-              {bullet.item}
-              {bullet.subItem && (
-                <ul class="cv-item-2 list-inside ml-4">
-                  {Array.isArray(bullet.subItem) ? (
-                    bullet.subItem.map((subItem: string) => (
-                      <li>{subItem}</li>
-                    ))
-                  ) : (
-                    <li>
-                      {bullet.subItem.item}
-                      {bullet.subItem.subItem && Array.isArray(bullet.subItem.subItem) && (
-                        <ul class="cv-item-3 list-inside ml-4">
-                          {bullet.subItem.subItem.map((subSubItem: string) => (
-                            <li>{subSubItem}</li>
-                          ))}
-                        </ul>
-                      )}
-                    </li>
-                  )}
-                </ul>
-              )}
-            </li>
-          ))}
-        </ul>
+  {Array.isArray(strengths.strengths[0]) ? (
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {(strengths.strengths as StrengthItem[][]).map((strengthArray: StrengthItem[]) => (
+        <StrengthList strengths={strengthArray} />
+      ))}
     </div>
+  ) : (
+    <StrengthList strengths={strengths.strengths as StrengthItem[]} />
+  )}
 </div>
+
+

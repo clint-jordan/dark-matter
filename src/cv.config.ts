@@ -128,20 +128,20 @@ export const education: Education = {
   ]
 }
 
-type StrengthItem = {
+export type StrengthItem = {
   item: string
   subItem?: string[] | StrengthItem
 }
 
 export interface Strengths {
   sectionTitle: string;
-  strengths: StrengthItem[];
+  strengths: StrengthItem[] | StrengthItem[][];
 }
 
 const strengthBullets: StrengthItem[] = [
   { 
-    item: "Programming Languages",
-    subItem: ["React", "Vue", "Angular"]
+    item: "Programming Languages that I know and love",
+    subItem: ["Visual Basic", "COBOL", "Pascal"]
   },
   { 
     item: "Web Development",
@@ -158,5 +158,9 @@ const strengthBullets: StrengthItem[] = [
 
 export const strengths: Strengths = {
   sectionTitle: "Technical Strengths",
-  strengths: strengthBullets
+  strengths: [strengthBullets, strengthBullets]
 }
+// export const strengths: Strengths = {
+//   sectionTitle: "Technical Strengths",
+//   strengths: strengthBullets
+// }

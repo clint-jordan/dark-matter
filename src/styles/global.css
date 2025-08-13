@@ -160,6 +160,8 @@
   
   .cv-item-1 {
     list-style-type: disc;
+    text-indent: -1.5rem;
+    padding-left: 1.5rem;
   }
   
   .cv-item-2 {
