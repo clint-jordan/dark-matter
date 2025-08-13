@@ -1,24 +1,11 @@
-export type Position = {
-  title: string,
-  employer: string,
-  startDate: string,
-  endDate: string,
-  bullets: string[]
-}
-export interface Experience {
-  sectionTitle: string,
-  positions: Position[]  
-}
-
-type Degree = {
-  title: string,
-  honors?: string,
-  dateObtained: string,
-  school: string
-}
-interface Education {
-  degrees: Degree[]  
-}
+import type { 
+  Position, 
+  Experience, 
+  Degree, 
+  Education,
+  StrengthItem,
+  Strengths
+} from "./lib/cv.types"
 
 const p1: Position = {
   title: "Lead Software Engineer",
@@ -126,16 +113,6 @@ export const education: Education = {
     d2,
     d3
   ]
-}
-
-export type StrengthItem = {
-  item: string
-  subItem?: string[] | StrengthItem
-}
-
-export interface Strengths {
-  sectionTitle: string;
-  strengths: StrengthItem[] | StrengthItem[][];
 }
 
 const strengthBulletsLeft: StrengthItem[] = [
