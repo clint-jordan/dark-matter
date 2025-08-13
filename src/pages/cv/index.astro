@@ -6,9 +6,10 @@ import { siteConfig } from "../../site.config"
 import Hero from "../../components/cv/Hero.astro";
 import Experience from "../../components/cv/Experience.astro"
 import Summary from "../../components/cv/Summary.astro"
+import Strengths from "../../components/cv/Strengths.astro"
 import Education from "../../components/cv/Education.astro"
 
-import { experience, otherExperience } from "../../cv.config";
+import { experience, otherExperience, strengths } from "../../cv.config";
 
 const config = siteConfig;
 const baseUrl = import.meta.env.BASE_URL;
@@ -28,6 +29,7 @@ const baseUrl = import.meta.env.BASE_URL;
   <Section class="my-16">
     <Hero/>
     <Summary/>
+    <Strengths strengths={strengths}/>
     <Experience experience={experience}/>
     <Education/>
     <Experience experience={otherExperience}/>

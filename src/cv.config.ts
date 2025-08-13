@@ -76,11 +76,11 @@ export const experience: Experience = {
 
 const po1: Position = {
   title: "Lifeguard",
-  employer: "Olypic Training Center",
+  employer: "US Olympic Training Center",
   startDate: "Dec 2014",
   endDate: "Dec 2018",
   bullets: [
-    "Occassionally rescued olymic athletes from drowning",
+    "Occassionally rescued olympic athletes",
   ],
 };
 const po2: Position = {
@@ -126,4 +126,37 @@ export const education: Education = {
     d2,
     d3
   ]
+}
+
+type StrengthItem = {
+  item: string
+  subItem?: string[] | StrengthItem
+}
+
+export interface Strengths {
+  sectionTitle: string;
+  strengths: StrengthItem[];
+}
+
+const strengthBullets: StrengthItem[] = [
+  { 
+    item: "Programming Languages",
+    subItem: ["React", "Vue", "Angular"]
+  },
+  { 
+    item: "Web Development",
+    subItem: ["React", "Vue", "Angular"]
+  },
+  { 
+    item: "Technical Work",
+    subItem: {
+      item: "Doing lots of stuff",
+      subItem: ["Computers", "Printers", "Fax Machines"]
+    }
+  },
+];
+
+export const strengths: Strengths = {
+  sectionTitle: "Technical Strengths",
+  strengths: strengthBullets
 }

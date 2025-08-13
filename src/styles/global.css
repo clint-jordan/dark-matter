@@ -157,4 +157,16 @@
   :where(.dark, .dark *) .hero-image {
     border-color: var(--color-theme-light);
   }
+  
+  .cv-item-1 {
+    list-style-type: disc;
+  }
+  
+  .cv-item-2 {
+    list-style-type: "- ";
+  }
+  
+  .cv-item-3 {
+    list-style-type: circle;
+  }
 }
