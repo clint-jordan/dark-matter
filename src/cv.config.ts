@@ -138,7 +138,25 @@ export interface Strengths {
   strengths: StrengthItem[] | StrengthItem[][];
 }
 
-const strengthBullets: StrengthItem[] = [
+const strengthBulletsLeft: StrengthItem[] = [
+  { 
+    item: "Programming Languages that I know and love",
+    subItem: ["Visual Basic", "COBOL", "Pascal"]
+  },
+  { 
+    item: "Web Development",
+    subItem: ["React", "Vue", "Angular"]
+  },
+  { 
+    item: "Technical Work",
+    subItem: {
+      item: "Doing lots of stuff",
+      subItem: ["Computers", "Printers", "Fax Machines"]
+    }
+  },
+];
+
+const strengthBulletsRight: StrengthItem[] = [
   { 
     item: "Programming Languages that I know and love",
     subItem: ["Visual Basic", "COBOL", "Pascal"]
@@ -158,7 +176,7 @@ const strengthBullets: StrengthItem[] = [
 
 export const strengths: Strengths = {
   sectionTitle: "Technical Strengths",
-  strengths: [strengthBullets, strengthBullets]
+  strengths: [strengthBulletsLeft, strengthBulletsRight]
 }
 // export const strengths: Strengths = {
 //   sectionTitle: "Technical Strengths",

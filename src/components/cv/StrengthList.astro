@@ -11,14 +11,14 @@ export type Props = {
 const { strengths } = Astro.props;
 ---
 
-<div class="relative theme-text theme-transition flex flex-col gap-3 mb-8">
-    <div class="ml-4 mb-4">
+<div class="relative theme-text theme-transition flex flex-col gap-3">
+    <div class="ml-4">
         <ul class="cv-item-1 list-inside">
           {strengths.map(bullet => (
             <li>
               {bullet.item}
               {bullet.subItem && (
-                <ul class="cv-item-2 list-inside ml-4">
+                <ul class="cv-item-2 list-inside ml-3">
                   {Array.isArray(bullet.subItem) ? (
                     bullet.subItem.map((subItem: string) => (
                       <li>{subItem}</li>
@@ -27,7 +27,7 @@ const { strengths } = Astro.props;
                     <li>
                       {bullet.subItem.item}
                       {bullet.subItem.subItem && Array.isArray(bullet.subItem.subItem) && (
-                        <ul class="cv-item-3 list-inside ml-4">
+                        <ul class="cv-item-3 list-inside ml-3">
                           {bullet.subItem.subItem.map((subSubItem: string) => (
                             <li>{subSubItem}</li>
                           ))}

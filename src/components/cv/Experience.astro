@@ -14,11 +14,11 @@ const { experience } = Astro.props;
 <div class="relative theme-text theme-transition flex flex-col gap-3 mb-8">
   <SectionHeader title={experience.sectionTitle} />
   {experience.positions.map((position: Position) => (
-    <div class="flex justify-between items-center">
+    <div class="flex justify-between items-center ml-4">
       <span><strong>{position.title}</strong>, {position.employer}</span>
       <span>{position.startDate} - {position.endDate}</span>
     </div>
-    <div class="ml-4 mb-4">
+    <div class="ml-6 mb-4">
       <ul class="list-disc list-inside">
         {position.bullets.map(bullet => (
           <li>{bullet}</li>
