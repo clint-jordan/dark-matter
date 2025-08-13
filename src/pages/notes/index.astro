@@ -5,6 +5,7 @@ import PostSnippet from "../../components/PostSnippet.astro";
 import { getCollection } from "astro:content";
 import { siteConfig } from "../../site.config"
 import ContentHeader from "../../components/common/ContentHeader.astro";
+import SEO from "../../components/common/SEO.astro";
 
 const config = siteConfig;
 
@@ -19,35 +20,14 @@ const posts = (await getCollection(collectionName)).map((post) => ({
 
 <Layout>
   <Fragment slot="head">
-    <title>{config.blogMeta.title}</title>
-    <meta
-      name="description"
-      content={config.blogMeta.longDescription ?? config.blogMeta.description}
+    <SEO
+      title={config.blogMeta.title}
+      description={config.blogMeta.description}
+      longDescription={config.blogMeta.longDescription}
+      keywords={config.blogMeta.keywords}
+      cardImage={config.blogMeta.cardImage}
+      url={`${baseUrl}/notes`}
     />
-    <meta property="og:title" content={config.blogMeta.title} />
-    <meta
-      property="og:description"
-      content={config.blogMeta.description}
-    />
-    {config.blogMeta.keywords && (
-      <meta name="keywords" content={config.blogMeta.keywords.join(", ")} />
-    )}
-    {config.blogMeta.cardImage && (
-      <meta property="og:image" content={config.blogMeta.cardImage} />
-    )}
-    <meta property="og:url" content={`${baseUrl}/blog`} />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={config.blogMeta.title} />
-    <meta
-      name="twitter:description"
-      content={config.blogMeta.description}
-    />
-    {config.blogMeta.cardImage && (
-      <meta name="twitter:image" content={config.blogMeta.cardImage} />
-    )}
-    <meta http-equiv="content-language" content="en" />
-    <meta name="language" content="English" />
-    <link rel="canonical" href={`${baseUrl}/blog`} />
   </Fragment>
   <Section class="my-16">
     <ContentHeader title={config.texts.notesName} cursor={true} />

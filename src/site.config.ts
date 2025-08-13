@@ -78,9 +78,9 @@ export const siteConfig = {
   },
   menu: {
     home: "/",
-    projects: "/projects/",
     blog: "/blog/",
     notes: "/notes/",
+    projects: "/projects/",
     search: "/search/"
   }
 };

@@ -1,0 +1,49 @@
+---
+import { getCollection } from "astro:content";
+import PostSnippet from "../PostSnippet.astro";
+import Anchor from "../common/Anchor.astro";
+import { siteConfig } from "../../site.config";
+
+const baseUrl = import.meta.env.BASE_URL;
+
+// Get all notes and sort by published date (most recent first)
+const allNotes = await getCollection("notes");
+const recentNotes = allNotes
+  .map((note) => ({
+    ...note.data,
+    url: `${baseUrl}/notes/${note.data.slug}`,
+  }))
+  .sort((a, b) => {
+    // Sort by published date, fallback to updated date, then by title
+    const dateA = a.published || a.updated || new Date(0);
+    const dateB = b.published || b.updated || new Date(0);
+    return dateB.getTime() - dateA.getTime();
+  })
+  .slice(0, 5); // Get only the 5 most recent notes
+---
+
+<div class="space-y-0 mb-20">
+  <div class="flex justify-between items-center pb-10">
+    <h2 class="text-3xl sm:text-4xl font-display theme-text">Recent Notes</h2>
+    <Anchor url={`${baseUrl}/notes`} class="theme-accent hover:theme-text transition-colors">
+      View all notes →
+    </Anchor>
+  </div>
+  
+  {recentNotes.length > 0 ? (
+    <div class="space-y-6">
+      {recentNotes.map((note) => (
+        <PostSnippet
+          title={note.title}
+          description={note.description}
+          url={note.url}
+          tags={note.tags}
+          published={note.published}
+          updated={note.updated}
+        />
+      ))}
+    </div>
+  ) : (
+    <p class="theme-muted">No notes yet.</p>
+  )}
+</div>
