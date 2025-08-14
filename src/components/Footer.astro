@@ -4,6 +4,10 @@ import ThemeToggle from "./ThemeToggle.astro";
 import { siteConfig } from "../site.config";
 
 const config = siteConfig;
+const opacities = [];
+for (let i = 10; i <= 70; i += 10) {
+  opacities.push(i);
+}
 ---
 
 <footer class="mb-2">
@@ -65,12 +69,8 @@ const config = siteConfig;
     <span>Site and contents by {siteConfig.personal.name}.</span>
   </div>
   <div class="flex flex-col gap-0 mt-0 mb-0">
-    <div class="h-3 bg-white opacity-10"></div>
-    <div class="h-3 bg-white opacity-20"></div>
-    <div class="h-3 bg-white opacity-30"></div>
-    <div class="h-3 bg-white opacity-40"></div>
-    <div class="h-3 bg-white opacity-50"></div>
-    <div class="h-3 bg-white opacity-60"></div>
-    <div class="h-3 bg-white opacity-70"></div>
+    {opacities.map((o) => {
+      return <div class="h-3 -theme-bg" style={`opacity: ${o}%`}></div>
+    })}
   </div>
 </footer>

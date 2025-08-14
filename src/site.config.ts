@@ -77,7 +77,7 @@ export const siteConfig = {
     noProjects: "No projects found."
   },
   menu: {
-    home: "/",
+    // home: "/",
     blog: "/blog/",
     notes: "/notes/",
     projects: "/projects/",
