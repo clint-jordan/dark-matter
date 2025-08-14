@@ -11,17 +11,63 @@ const baseUrl = import.meta.env.BASE_URL;
 <Layout>
   <Fragment slot="head">
     <SEO
-      title={config.blogMeta.title}
-      description={config.blogMeta.description}
-      longDescription={config.blogMeta.longDescription}
-      keywords={config.blogMeta.keywords}
-      cardImage={config.blogMeta.cardImage}
-      url={`${baseUrl}/${config.texts.cvName}`}
+      title="Search"
+      titleSuffix={config.personal.name}
+      description="Search through blog posts, notes, and projects"
+      longDescription="Search through all content including blog posts, notes, and projects to find what you're looking for."
+      keywords={["search", "blog", "notes", "projects"]}
+      cardImage={config.searchMeta.cardImage}
+      url={`${baseUrl}/search`}
     />
+    <link rel="stylesheet" href={`${baseUrl}/pagefind/pagefind-ui.css`}>
   </Fragment>
   <Section class="mt-16">
-    <h1 class="text-3xl sm:text-4xl font-display pb-8">
-      Coming Soon...
-    </h1>
+    <div class="text-center mb-12">
+      <h1 class="text-3xl sm:text-4xl font-display pb-4">
+        Search
+      </h1>
+      <p class="text-lg theme-muted">
+        Enter a search term or phrase to search the blog.
+      </p>
+    </div>
+    
+    <div id="search"></div>
   </Section>
-</Layout
+</Layout>
+
+<script is:inline define:vars={{ baseUrl }}>
+  // Simple Pagefind initialization
+  window.addEventListener('load', function() {
+    console.log('Page loading, initializing search...');
+    const script = document.createElement('script');
+    script.src = `${baseUrl}/pagefind/pagefind-ui.js`;
+    script.onload = function() {
+      console.log('Pagefind UI script loaded successfully');
+      new PagefindUI({
+        element: "#search",
+        showImages: false,
+        translations: {
+          placeholder: "Search...",
+          clear_search: "Clear",
+          load_more: "Load more results",
+          search_result: "Search result",
+          search_results: "Search results",
+          search_results_for: "Search results for",
+          filters: "Filters",
+          filter_by: "Filter by",
+          zero_results: "No results found for",
+          many_results: "Found results for",
+          one_result: "Found result for",
+          alt_search: "No results found for. Showing results for instead",
+          search_suggestion: "No results found for. Try a different search term",
+          searching: "Searching for",
+        }
+      });
+    };
+    script.onerror = function() {
+      console.error('Failed to load Pagefind UI');
+      document.getElementById('search').innerHTML = '<p class="text-center text-red-600">Failed to load search. Please refresh the page.</p>';
+    };
+    document.head.appendChild(script);
+  });
+</script>
