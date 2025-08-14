@@ -63,7 +63,7 @@ export const siteConfig = {
   },
   personal: {
     name: "John Doe",
-    githubProfile: "https://github.com/clint-jordan",
+    githubProfile: "https://github.com",
     twitterProfile: "https://twitter.com",
     linkedinProfile: "https://linkedin.com/"
   },

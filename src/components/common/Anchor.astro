@@ -4,9 +4,10 @@ export type Props = {
   class?: string;
   external?: boolean;
   "aria-label"?: string;
+  noHover?: boolean;
 };
 
-const { url, external, class: className } = Astro.props;
+const { url, external, class: className, noHover } = Astro.props;
 ---
 
 <a
@@ -18,7 +19,7 @@ const { url, external, class: className } = Astro.props;
   target={external ? "_blank" : "_self"}
   aria-label={Astro.props["aria-label"]}
 >
-  <span class="anchor-hover">
+  <span class:list={["anchor-hover", { "no-hover": noHover }]}>
     <slot />
   </span>
   {
@@ -58,5 +59,9 @@ const { url, external, class: className } = Astro.props;
 
   .anchor-hover:hover::after {
     width: 100%;
+  }
+
+  .anchor-hover.no-hover::after {
+    display: none;
   }
 </style>

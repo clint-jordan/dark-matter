@@ -52,6 +52,10 @@
     --theme-transition-duration: 0.15s;
     --theme-transition-timing-function: ease-in-out;
   }
+  
+  html {
+    min-height: 100vh;
+  }
 
   ::selection {
     background-color: var(--color-theme-accent-light);

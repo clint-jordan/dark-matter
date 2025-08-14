@@ -41,11 +41,13 @@ const baseUrl = import.meta.env.BASE_URL;
     
     <slot name="head" />
   </head>
-  <body class="theme-bg theme-text theme-transition font-mono">
-    <Header />
-    <main>
-      <slot />
-    </main>
+  <body class="theme-bg theme-text theme-transition font-mono min-h-screen flex flex-col justify-between">
+    <div>
+      <Header />
+      <main class="mb-30">
+        <slot />
+      </main>
+    </div>
     <Footer />
   </body>
 </html>
