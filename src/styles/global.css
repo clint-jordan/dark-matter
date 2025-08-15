@@ -189,15 +189,17 @@
     51%, 100% { opacity: 0; }
   }
 
-  .nav-link {
+  /* Base link hover styles - apply this class to any element that needs the underline effect */
+  .link-hover {
     position: relative;
     text-decoration: none;
+    display: inline-block;
   }
 
-  .nav-link::after {
+  .link-hover::after {
     content: '';
     position: absolute;
-    bottom: -4px;
+    bottom: var(--underline-bottom, -2px);
     left: 0;
     width: 0;
     height: 2px;
@@ -205,8 +207,28 @@
     transition: width 0.3s ease;
   }
 
-  .nav-link:hover::after,
-  .nav-link.active::after {
+  .link-hover:hover::after {
     width: 100%;
+  }
+
+  /* Specific bottom positions for different use cases */
+  .link-hover.nav {
+    --underline-bottom: -4px;
+  }
+
+  .link-hover.nav.active::after {
+    width: 100%;
+  }
+
+  .link-hover.anchor {
+    --underline-bottom: -2px;
+  }
+
+  .link-hover.anchor.no-hover::after {
+    display: none;
+  }
+
+  .link-hover.pagefind-link {
+    --underline-bottom: 0px;
   }
 }

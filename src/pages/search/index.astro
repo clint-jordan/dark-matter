@@ -77,103 +77,6 @@ const baseUrl = import.meta.env.BASE_URL;
           --pagefind-ui-muted: #6b7280;
         }
       }
-
-      /* Custom search input styling */
-      .pagefind-ui__search-input {
-        border-radius: var(--pagefind-ui-border-radius) !important;
-        border: var(--pagefind-ui-border-width) solid var(--pagefind-ui-border) !important;
-        background: var(--pagefind-ui-background) !important;
-        color: var(--pagefind-ui-text) !important;
-        font-family: var(--pagefind-ui-font) !important;
-        transition: all 0.2s ease-in-out !important;
-      }
-
-      .pagefind-ui__search-input:focus {
-        outline: none !important;
-        border-color: var(--pagefind-ui-primary) !important;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
-      }
-
-      /* Custom result styling */
-      .pagefind-ui__results-area {
-        margin-top: var(--pagefind-ui-spacing-lg) !important;
-      }
-
-      .pagefind-ui__message {
-        color: var(--pagefind-ui-text) !important;
-        font-family: var(--pagefind-ui-font) !important;
-      }
-
-      .pagefind-ui__result {
-        border: var(--pagefind-ui-border-width) solid var(--pagefind-ui-border) !important;
-        border-radius: var(--pagefind-ui-border-radius) !important;
-        background: var(--pagefind-ui-background) !important;
-        transition: all 0.2s ease-in-out !important;
-        margin-bottom: var(--pagefind-ui-spacing) !important;
-      }
-
-      .pagefind-ui__result:hover {
-        border-color: var(--pagefind-ui-primary) !important;
-        box-shadow: var(--pagefind-ui-shadow) !important;
-        transform: translateY(-1px) !important;
-      }
-
-      .pagefind-ui__result-link {
-        color: var(--pagefind-ui-text) !important;
-        text-decoration: none !important;
-        font-weight: var(--pagefind-ui-font-weight-bold) !important;
-      }
-
-      .pagefind-ui__result-link:hover {
-        color: var(--pagefind-ui-primary) !important;
-      }
-
-      .pagefind-ui__result-excerpt {
-        color: var(--pagefind-ui-muted) !important;
-        font-family: var(--pagefind-ui-font) !important;
-      }
-
-      .pagefind-ui__result-meta {
-        color: var(--pagefind-ui-secondary) !important;
-        font-family: var(--pagefind-ui-font) !important;
-        font-size: 0.875rem !important;
-      }
-
-      .pagefind-ui__result-tags {
-        margin-top: var(--pagefind-ui-spacing-xs) !important;
-      }
-
-      .pagefind-ui__result-tag {
-        background: var(--pagefind-ui-tag) !important;
-        color: var(--pagefind-ui-text) !important;
-        border-radius: 4px !important;
-        padding: 0.25rem 0.5rem !important;
-        font-size: 0.75rem !important;
-        font-weight: var(--pagefind-ui-font-weight) !important;
-        transition: background-color 0.2s ease-in-out !important;
-      }
-
-      .pagefind-ui__result-tag:hover {
-        background: var(--pagefind-ui-tag-hover) !important;
-      }
-
-      /* Clear button styling */
-      .pagefind-ui__search-clear {
-        color: var(--pagefind-ui-muted) !important;
-        background: transparent !important;
-        border: none !important;
-        cursor: pointer !important;
-        transition: color 0.2s ease-in-out !important;
-      }
-
-      .pagefind-ui__search-clear:hover {
-        color: var(--pagefind-ui-text) !important;
-      }
-
-      /* Loading state */
-      .pagefind-ui__search-loading {
-        color: var(--pagefind-ui-primary) !important;
-      }
     </style>
   </Fragment>
   <Section class="mt-16">
@@ -181,9 +84,6 @@ const baseUrl = import.meta.env.BASE_URL;
       <h1 class="text-3xl sm:text-4xl font-display pb-4">
         Search
       </h1>
-      <p class="text-lg theme-muted">
-        Enter a search term or phrase to search the blog.
-      </p>
     </div>
     
     <div id="search"></div>
@@ -198,9 +98,10 @@ const baseUrl = import.meta.env.BASE_URL;
     script.src = isDev ? '/dist/pagefind/pagefind-ui.js' : `${baseUrl}/pagefind/pagefind-ui.js`;
     script.onload = function() {
       console.log('Pagefind UI script loaded successfully');
-      new PagefindUI({
+      const pagefindUI = new PagefindUI({
         element: "#search",
         showImages: false,
+        resetStyles: false,
         translations: {
           placeholder: "Search...",
           clear_search: "Clear",
@@ -218,6 +119,35 @@ const baseUrl = import.meta.env.BASE_URL;
           searching: "Searching for",
         }
       });
+
+      // Add link hover classes to Pagefind result links for underline effect
+      function addLinkUnderlineEffect() {
+        const links = document.querySelectorAll('.pagefind-ui__result-link');
+        
+        links.forEach(link => {
+          // Remove Pagefind's default underline styles
+          link.style.setProperty('text-decoration', 'none', 'important');
+          
+          // Add both the base link-hover class and the specific pagefind class
+          link.classList.add('link-hover', 'pagefind-link-hover');
+        });
+      }
+
+      // Apply underline effect after Pagefind loads and watch for changes
+      setTimeout(addLinkUnderlineEffect, 200);
+      
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'childList') {
+            setTimeout(addLinkUnderlineEffect, 100);
+          }
+        });
+      });
+
+      const searchContainer = document.getElementById('search');
+      if (searchContainer) {
+        observer.observe(searchContainer, { childList: true, subtree: true });
+      }
     };
     script.onerror = function() {
       console.error('Failed to load Pagefind UI');
