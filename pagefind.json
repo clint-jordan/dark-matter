@@ -1,0 +1,12 @@
+{
+  "site": "dist",
+  "exclude_selectors": [
+    "[data-pagefind-ignore]",
+    "meta[name=\"pagefind-ignore\"]",
+    "nav",
+    "footer",
+    ".search-fallback"
+  ],
+  "force_language": "en",
+  "output_subdir": "pagefind"
+}

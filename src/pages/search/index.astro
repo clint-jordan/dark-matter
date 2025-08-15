@@ -20,6 +20,161 @@ const baseUrl = import.meta.env.BASE_URL;
       url={`${baseUrl}/search`}
     />
     <link rel="stylesheet" href={`${baseUrl}/pagefind/pagefind-ui.css`}>
+    <style>
+      /* Custom Pagefind styling */
+      :root {
+        /* Search input styling */
+        --pagefind-ui-scale: 1;
+        --pagefind-ui-primary: #3b82f6; /* Blue accent */
+        --pagefind-ui-text: var(--theme-text-color, #374151);
+        --pagefind-ui-background: var(--theme-bg-color, #ffffff);
+        --pagefind-ui-border: var(--theme-border-color, #d1d5db);
+        --pagefind-ui-tag: #e5e7eb;
+        --pagefind-ui-border-width: 1px;
+        --pagefind-ui-border-radius: 8px;
+        --pagefind-ui-font: var(--font-mono, 'IBM Plex Mono', monospace);
+        --pagefind-ui-font-size: 16px;
+        --pagefind-ui-line-height: 1.5;
+        --pagefind-ui-font-weight: 400;
+        --pagefind-ui-font-weight-bold: 600;
+        --pagefind-ui-font-weight-heading: 700;
+        --pagefind-ui-letter-spacing: 0.025em;
+        --pagefind-ui-spacing: 1rem;
+        --pagefind-ui-spacing-xs: 0.5rem;
+        --pagefind-ui-spacing-sm: 0.75rem;
+        --pagefind-ui-spacing-md: 1.25rem;
+        --pagefind-ui-spacing-lg: 1.5rem;
+        --pagefind-ui-spacing-xl: 2rem;
+        --pagefind-ui-spacing-xxl: 3rem;
+        --pagefind-ui-border-radius: 8px;
+        --pagefind-ui-border-width: 1px;
+        --pagefind-ui-border: #d1d5db;
+        --pagefind-ui-tag: #e5e7eb;
+        --pagefind-ui-tag-hover: #d1d5db;
+        --pagefind-ui-color: #374151;
+        --pagefind-ui-background: #ffffff;
+        --pagefind-ui-primary: #3b82f6;
+        --pagefind-ui-secondary: #6b7280;
+        --pagefind-ui-muted: #9ca3af;
+        --pagefind-ui-error: #ef4444;
+        --pagefind-ui-success: #10b981;
+        --pagefind-ui-warning: #f59e0b;
+        --pagefind-ui-info: #3b82f6;
+        --pagefind-ui-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        --pagefind-ui-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
+
+      /* Dark mode support */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --pagefind-ui-text: var(--theme-text-color, #f3f4f6);
+          --pagefind-ui-background: var(--theme-bg-color, #1f2937);
+          --pagefind-ui-border: var(--theme-border-color, #4b5563);
+          --pagefind-ui-tag: #374151;
+          --pagefind-ui-tag-hover: #4b5563;
+          --pagefind-ui-color: #f3f4f6;
+          --pagefind-ui-secondary: #9ca3af;
+          --pagefind-ui-muted: #6b7280;
+        }
+      }
+
+      /* Custom search input styling */
+      .pagefind-ui__search-input {
+        border-radius: var(--pagefind-ui-border-radius) !important;
+        border: var(--pagefind-ui-border-width) solid var(--pagefind-ui-border) !important;
+        background: var(--pagefind-ui-background) !important;
+        color: var(--pagefind-ui-text) !important;
+        font-family: var(--pagefind-ui-font) !important;
+        transition: all 0.2s ease-in-out !important;
+      }
+
+      .pagefind-ui__search-input:focus {
+        outline: none !important;
+        border-color: var(--pagefind-ui-primary) !important;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+      }
+
+      /* Custom result styling */
+      .pagefind-ui__results-area {
+        margin-top: var(--pagefind-ui-spacing-lg) !important;
+      }
+
+      .pagefind-ui__message {
+        color: var(--pagefind-ui-text) !important;
+        font-family: var(--pagefind-ui-font) !important;
+      }
+
+      .pagefind-ui__result {
+        border: var(--pagefind-ui-border-width) solid var(--pagefind-ui-border) !important;
+        border-radius: var(--pagefind-ui-border-radius) !important;
+        background: var(--pagefind-ui-background) !important;
+        transition: all 0.2s ease-in-out !important;
+        margin-bottom: var(--pagefind-ui-spacing) !important;
+      }
+
+      .pagefind-ui__result:hover {
+        border-color: var(--pagefind-ui-primary) !important;
+        box-shadow: var(--pagefind-ui-shadow) !important;
+        transform: translateY(-1px) !important;
+      }
+
+      .pagefind-ui__result-link {
+        color: var(--pagefind-ui-text) !important;
+        text-decoration: none !important;
+        font-weight: var(--pagefind-ui-font-weight-bold) !important;
+      }
+
+      .pagefind-ui__result-link:hover {
+        color: var(--pagefind-ui-primary) !important;
+      }
+
+      .pagefind-ui__result-excerpt {
+        color: var(--pagefind-ui-muted) !important;
+        font-family: var(--pagefind-ui-font) !important;
+      }
+
+      .pagefind-ui__result-meta {
+        color: var(--pagefind-ui-secondary) !important;
+        font-family: var(--pagefind-ui-font) !important;
+        font-size: 0.875rem !important;
+      }
+
+      .pagefind-ui__result-tags {
+        margin-top: var(--pagefind-ui-spacing-xs) !important;
+      }
+
+      .pagefind-ui__result-tag {
+        background: var(--pagefind-ui-tag) !important;
+        color: var(--pagefind-ui-text) !important;
+        border-radius: 4px !important;
+        padding: 0.25rem 0.5rem !important;
+        font-size: 0.75rem !important;
+        font-weight: var(--pagefind-ui-font-weight) !important;
+        transition: background-color 0.2s ease-in-out !important;
+      }
+
+      .pagefind-ui__result-tag:hover {
+        background: var(--pagefind-ui-tag-hover) !important;
+      }
+
+      /* Clear button styling */
+      .pagefind-ui__search-clear {
+        color: var(--pagefind-ui-muted) !important;
+        background: transparent !important;
+        border: none !important;
+        cursor: pointer !important;
+        transition: color 0.2s ease-in-out !important;
+      }
+
+      .pagefind-ui__search-clear:hover {
+        color: var(--pagefind-ui-text) !important;
+      }
+
+      /* Loading state */
+      .pagefind-ui__search-loading {
+        color: var(--pagefind-ui-primary) !important;
+      }
+    </style>
   </Fragment>
   <Section class="mt-16">
     <div class="text-center mb-12">
