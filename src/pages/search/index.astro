@@ -19,13 +19,13 @@ const baseUrl = import.meta.env.BASE_URL;
       cardImage={config.searchMeta.cardImage}
       url={`${baseUrl}/search`}
     />
-    <link rel="stylesheet" href={`${baseUrl}/pagefind/pagefind-ui.css`}>
+    <link rel="stylesheet" href={import.meta.env.DEV ? '/dist/pagefind/pagefind-ui.css' : `${baseUrl}/pagefind/pagefind-ui.css`}>
     <style>
       /* Custom Pagefind styling */
       :root {
         /* Search input styling */
         --pagefind-ui-scale: 1;
-        --pagefind-ui-primary: #3b82f6; /* Blue accent */
+        --pagefind-ui-primary: green;
         --pagefind-ui-text: var(--theme-text-color, #374151);
         --pagefind-ui-background: var(--theme-bg-color, #ffffff);
         --pagefind-ui-border: var(--theme-border-color, #d1d5db);
@@ -190,12 +190,12 @@ const baseUrl = import.meta.env.BASE_URL;
   </Section>
 </Layout>
 
-<script is:inline define:vars={{ baseUrl }}>
+<script is:inline define:vars={{ baseUrl, isDev: import.meta.env.DEV }}>
   // Simple Pagefind initialization
   window.addEventListener('load', function() {
     console.log('Page loading, initializing search...');
     const script = document.createElement('script');
-    script.src = `${baseUrl}/pagefind/pagefind-ui.js`;
+    script.src = isDev ? '/dist/pagefind/pagefind-ui.js' : `${baseUrl}/pagefind/pagefind-ui.js`;
     script.onload = function() {
       console.log('Pagefind UI script loaded successfully');
       new PagefindUI({
