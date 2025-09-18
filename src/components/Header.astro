@@ -18,7 +18,7 @@ const baseUrl = import.meta.env.BASE_URL;
       <nav class="flex gap-6">
           {
             Object.entries(config.menu).map((i) => {
-            const isActive = currentPath === i[1];
+            const isActive = currentPath === `${baseUrl}${i[1]}`;
               return (<a href={`${baseUrl}${i[1]}`} class={`link-hover nav ${isActive ? 'active' : ''}`}>{i[0]}</a>);
             })
           }
