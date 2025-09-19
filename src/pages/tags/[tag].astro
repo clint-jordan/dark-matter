@@ -1,0 +1,97 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Section from "../../components/common/Section.astro";
+import PostSnippet from "../../components/PostSnippet.astro";
+import { getCollection } from "astro:content";
+import { siteConfig } from "../../site.config";
+import ContentHeader from "../../components/common/ContentHeader.astro";
+import SEO from "../../components/common/SEO.astro";
+import TaggedPosts from "../../components/tags/TaggedPosts.astro";
+
+export async function getStaticPaths() {
+  // Get all collections
+  const blogPosts = await getCollection("blog");
+  const notes = await getCollection("notes");
+  const projects = await getCollection("projects");
+  
+  // Collect all unique tags
+  const allTags = new Set<string>();
+  
+  [...blogPosts, ...notes, ...projects].forEach(item => {
+    if (item.data.tags) {
+      item.data.tags.forEach((tag: string) => allTags.add(tag));
+    }
+  });
+  
+  // Generate paths for each tag
+  return Array.from(allTags).map(tag => ({
+    params: { tag: tag.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '') },
+    props: { tag }
+  }));
+}
+
+const { tag } = Astro.props;
+const config = siteConfig;
+const baseUrl = import.meta.env.BASE_URL;
+
+// Get all content with this tag
+const blogPosts = (await getCollection("blog")).filter(post => 
+  post.data.tags?.includes(tag)
+).map((post) => ({
+  ...post.data,
+  url: `${baseUrl}/blog/${post.data.slug}`,
+  type: 'blog'
+}));
+
+const notes = (await getCollection("notes")).filter(note => 
+  note.data.tags?.includes(tag)
+).map((note) => ({
+  ...note.data,
+  url: `${baseUrl}/notes/${note.data.slug}`,
+  type: 'note'
+}));
+
+const projects = (await getCollection("projects")).filter(project => 
+  project.data.tags?.includes(tag)
+).map((project) => ({
+  ...project.data,
+  url: `${baseUrl}/projects/${project.data.slug}`,
+  type: 'project'
+}));
+
+// Combine all content and sort by date
+const allContent = [...blogPosts, ...notes, ...projects].sort((a, b) => {
+  const dateA = a.updated || a.published || new Date(0);
+  const dateB = b.updated || b.published || new Date(0);
+  return dateB.getTime() - dateA.getTime();
+});
+---
+
+<Layout>
+  <Fragment slot="head">
+    <SEO
+      title={`${tag} - ${config.globalMeta.title}`}
+      description={`All content tagged with "${tag}"`}
+      longDescription={`Browse all blog posts, notes, and projects tagged with "${tag}"`}
+      keywords={[tag, ...config.globalMeta.keywords]}
+      cardImage={config.globalMeta.cardImage}
+      url={`${baseUrl}/tags/${tag.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '')}`}
+    />
+  </Fragment>
+  
+  <Section class="my-16">
+    <ContentHeader 
+      title={`Tag: ${tag}`} 
+      cursor={false} 
+    />
+    
+    {blogPosts.length > 0 ? (
+      <TaggedPosts contentType="Blog posts" posts={blogPosts} />
+    ) : null}
+    {notes.length > 0 ? (
+      <TaggedPosts contentType="Notes" posts={notes} />
+    ) : null}
+    {projects.length > 0 ? (
+      <TaggedPosts contentType="Projects" posts={projects} />
+    ) : null}
+</Layout>
