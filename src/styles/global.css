@@ -231,4 +231,15 @@
   .link-hover.pagefind-link {
     --underline-bottom: 0px;
   }
+
+  .tag-hover-effect {
+    position: relative;
+    transition: all 0.2s ease;
+    box-shadow: none;
+  }
+  
+  .tag-hover-effect:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 2px 2px 0 0 var(--color-theme-accent-light);
+  }
 }
