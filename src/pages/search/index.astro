@@ -10,15 +10,7 @@ const baseUrl = import.meta.env.BASE_URL;
 
 <Layout>
   <Fragment slot="head">
-    <SEO
-      title="Search"
-      titleSuffix={config.personal.name}
-      description="Search through blog posts, notes, and projects"
-      longDescription="Search through all content including blog posts, notes, and projects to find what you're looking for."
-      keywords={["search", "blog", "notes", "projects"]}
-      cardImage={config.searchMeta.cardImage}
-      url={`${baseUrl}/search`}
-    />
+    <SEO meta="searchMeta" />
     <link rel="stylesheet" href={import.meta.env.DEV ? '/dist/pagefind/pagefind-ui.css' : `${baseUrl}/pagefind/pagefind-ui.css`}>
     <style>
       /* Custom Pagefind styling */

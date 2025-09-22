@@ -1,47 +1,44 @@
 ---
+import type { MetaData } from "../../site.config";
+
 export interface Props {
-  title: string;
-  titleSuffix?: string;
-  description: string;
-  longDescription?: string;
-  keywords?: string[];
-  cardImage?: string;
-  url: string;
+  meta?: string;
   type?: string;
 }
 
 const { 
-  title, 
-  titleSuffix,
-  description, 
-  longDescription, 
-  keywords, 
-  cardImage, 
-  url, 
-  type = "summary_large_image" 
+  meta,
+  type
 } = Astro.props;
+
+import { siteConfig } from "../../site.config"
+const config = siteConfig;
+const baseUrl = import.meta.env.BASE_URL;
+const metaKey = meta && meta in config ? meta : "globalMeta";
+const metaData = config[metaKey as keyof typeof config] as MetaData;
+const allowSearch = metaData.allowSearch !== undefined ? metaData.allowSearch : true;
 ---
 
-<title>{title}{titleSuffix ? ` • ${titleSuffix}` : ''}</title>
+<title>{metaData.title ?? config.globalMeta.title}{metaData.titleSuffix ? ` • ${metaData.titleSuffix}` : ''}</title>
 <meta
   name="description"
-  content={longDescription ?? description}
+  content={metaData.longDescription ?? metaData.description}
 />
-<meta property="og:title" content={`${title}${titleSuffix ? ` • ${titleSuffix}` : ''}`} />
-<meta property="og:description" content={description} />
-{keywords && (
-  <meta name="keywords" content={keywords.join(", ")} />
+<meta property="og:title" content={`${metaData.title}${metaData.titleSuffix ? ` • ${metaData.titleSuffix}` : ''}`} />
+<meta property="og:description" content={metaData.description} />
+{metaData.keywords && (
+  <meta name="keywords" content={metaData.keywords.join(", ")} />
 )}
-{cardImage && (
-  <meta property="og:image" content={cardImage} />
+{!allowSearch && (
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
 )}
-<meta property="og:url" content={url} />
+<meta property="og:url" content={metaData.url} />
 <meta name="twitter:card" content={type} />
-<meta name="twitter:title" content={`${title}${titleSuffix ? ` • ${titleSuffix}` : ''}`} />
-<meta name="twitter:description" content={description} />
-{cardImage && (
-  <meta name="twitter:image" content={cardImage} />
+<meta name="twitter:title" content={`${metaData.title}${metaData.titleSuffix ? ` • ${metaData.titleSuffix}` : ''}`} />
+<meta name="twitter:description" content={metaData.description} />
+{metaData.cardImage && (
+  <meta name="twitter:image" content={metaData.cardImage} />
 )}
 <meta http-equiv="content-language" content="en" />
 <meta name="language" content="English" />
-<link rel="canonical" href={url} />
+<link rel="canonical" href={`${baseUrl}${metaData.url}`} />

@@ -17,14 +17,7 @@ const baseUrl = import.meta.env.BASE_URL;
 
 <Layout>
   <Fragment slot="head">
-    <SEO
-      title={config.blogMeta.title}
-      description={config.blogMeta.description}
-      longDescription={config.blogMeta.longDescription}
-      keywords={config.blogMeta.keywords}
-      cardImage={config.blogMeta.cardImage}
-      url={`${baseUrl}/${config.texts.cvName}`}
-    />
+    <SEO meta="cvMeta" />
   </Fragment>
   <Section class="my-16">
     <Hero/>

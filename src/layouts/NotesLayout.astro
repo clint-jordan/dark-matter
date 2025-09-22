@@ -20,15 +20,7 @@ const baseUrl = import.meta.env.BASE_URL;
 
 <Layout>
   <Fragment slot="head">
-    <SEO
-      title={frontmatter.title}
-      titleSuffix={config.personal.name}
-      description={frontmatter.description}
-      longDescription={frontmatter.longDescription}
-      keywords={frontmatter.tags}
-      cardImage={frontmatter.cardImage}
-      url={`${baseUrl}/blog/${frontmatter.slug}`}
-    />
+    <SEO meta="notesMeta" />
   </Fragment>
   <Section class="pt-8">
     <div data-pagefind-body class="flex flex-col gap-0 mt-8 mb-16">

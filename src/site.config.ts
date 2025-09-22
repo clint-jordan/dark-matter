@@ -1,4 +1,14 @@
-// Site configuration that can be imported in astro.config.mjs
+export interface MetaData {
+  title?: string;
+  titleSuffix?: string;
+  description: string;
+  longDescription: string;
+  cardImage: string;
+  keywords: string[];
+  allowSearch?: boolean;
+  url: string;
+}
+
 export const siteConfig = {
   site: {
     devPort: 4321,
@@ -6,56 +16,62 @@ export const siteConfig = {
     base: "/dark-matter"
   },
   globalMeta: {
-    title: "dark-matter",
+    title: "John Doe",
     description: "",
     longDescription: "",
     cardImage: "/card-image.webp",
     keywords: ["web development", "design", "technology"]
   },
   blogMeta: {
-    title: "John Doe Blog",
+    titleSuffix: "Blog",
     description: "",
     longDescription: "",
     cardImage: "/card-image.webp",
-    keywords: ["web development", "design", "technology"]
+    keywords: ["web development", "design", "technology"],
+    url: "/blog"
   },
   projectMeta: {
-    title: "dark-matter",
+    titleSuffix: "Projects",
     description: "",
     longDescription: "",
     cardImage: "/card-image.webp",
-    keywords: ["web development", "design", "technology"]
+    keywords: ["web development", "design", "technology"],
+    url: "/projects"
   },
   notesMeta: {
-    title: "dark-matter",
+    titleSuffix: "Notes",
     description: "",
     longDescription: "",
     cardImage: "/card-image.webp",
-    keywords: ["web development", "design", "technology"]
+    keywords: ["web development", "design", "technology"],
+    url: "/notes"
   },
-  Meta: {
-    title: "dark-matter",
+  cvMeta: {
+    titleSuffix: "CV",
     description: "",
     longDescription: "",
     cardImage: "/card-image.webp",
-    keywords: ["web development", "design", "technology"]
+    keywords: ["web development", "design", "technology"],
+    allowSearch: false,
+    url: "/cv"
   },
   searchMeta: {
-    title: "dark-matter",
+    titleSuffix: "Search",
     description: "",
     longDescription: "",
     cardImage: "/card-image.webp",
-    keywords: ["web development", "design", "technology"]
+    keywords: ["web development", "design", "technology"],
+    url: "/search"
   },
   notFoundMeta: {
-    title: "404",
+    titleSuffix: "404",
     description: "The page you are looking for does not exist.",
-    longDescription: "The page you are looking for does not exist. Maybe it never existed. Spooky.",
+    longDescription: "The page you are looking for does not exist.",
+    allowSearch: false,
     cardImage: "/card-image.webp",
-    foo: "bar"
   },
   hero: {
-    title: "John Doe",
+    title: "Foo",
     subtitle: "A profound defining statement",
     image: "/card-image.webp",
     ctaText: "View Projects",
@@ -78,9 +94,10 @@ export const siteConfig = {
   },
   menu: {
     // home: "/",
-    blog: "/blog/",
-    notes: "/notes/",
-    projects: "/projects/",
-    search: "/search/"
+    blog: "/blog",
+    notes: "/notes",
+    projects: "/projects",
+    cv: "/cv",
+    search: "/search"
   }
 };
