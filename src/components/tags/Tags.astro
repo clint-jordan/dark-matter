@@ -11,7 +11,7 @@ const baseUrl = import.meta.env.BASE_URL;
     tags?.map((tag) => (
       <a 
         href={`${baseUrl}/tags/${tag.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '')}`}
-        class="tag-hover-effect -theme-text -theme-muted-bg theme-transition px-2 py-1 text-sm font-semibold hover:opacity-80 cursor-pointer"
+        class="tag"
       >
         {tag}
       </a>

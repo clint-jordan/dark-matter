@@ -232,14 +232,24 @@
     --underline-bottom: 0px;
   }
 
-  .tag-hover-effect {
+  .tag {
+    @apply px-2 py-1 text-sm font-semibold opacity-80 hover:opacity-90 cursor-pointer;
     position: relative;
-    transition: all 0.2s ease;
+    color: var(--color-theme-light);
+    background-color: var(--color-theme-dark-muted);
     box-shadow: none;
+    transition: all 0.2s ease,
+                background-color var(--theme-transition-duration) var(--theme-transition-timing-function),
+                color var(--theme-transition-duration) var(--theme-transition-timing-function);
   }
-  
-  .tag-hover-effect:hover {
+
+  .tag:hover {
     transform: translate(-1px, -1px);
     box-shadow: 2px 2px 0 0 var(--color-theme-accent-light);
+  }
+
+  :where(.dark, .dark *) .tag {
+    color: var(--color-theme-dark);
+    background-color: var(--color-theme-light-muted);
   }
 }
