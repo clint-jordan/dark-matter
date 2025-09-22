@@ -252,4 +252,13 @@
     color: var(--color-theme-dark);
     background-color: var(--color-theme-light-muted);
   }
+
+  .theme-toggle {
+    @apply w-3 h-3 rounded-full cursor-pointer hover:scale-110 transition-transform duration-200;
+    background-color: var(--color-theme-dark);
+  }
+
+  :where(.dark, .dark *) .theme-toggle {
+    background-color: var(--color-theme-light);
+  }
 }
