@@ -16,14 +16,14 @@ export const siteConfig = {
     base: "/dark-matter",
     showHomeHero: true
   },
-  globalMeta: {
+  global: {
     title: "John Doe",
     description: "",
     longDescription: "",
     cardImage: "/card-image.webp",
     keywords: ["web development", "design", "technology"]
   },
-  blogMeta: {
+  blog: {
     titleSuffix: "Blog",
     description: "",
     longDescription: "",
@@ -31,7 +31,7 @@ export const siteConfig = {
     keywords: ["web development", "design", "technology"],
     url: "/blog"
   },
-  projectMeta: {
+  project: {
     titleSuffix: "Projects",
     description: "",
     longDescription: "",
@@ -39,7 +39,7 @@ export const siteConfig = {
     keywords: ["web development", "design", "technology"],
     url: "/projects"
   },
-  notesMeta: {
+  notes: {
     titleSuffix: "Notes",
     description: "",
     longDescription: "",
@@ -47,7 +47,7 @@ export const siteConfig = {
     keywords: ["web development", "design", "technology"],
     url: "/notes"
   },
-  cvMeta: {
+  cv: {
     titleSuffix: "CV",
     description: "",
     longDescription: "",
@@ -56,7 +56,7 @@ export const siteConfig = {
     allowSearch: false,
     url: "/cv"
   },
-  searchMeta: {
+  search: {
     titleSuffix: "Search",
     description: "",
     longDescription: "",
@@ -64,7 +64,7 @@ export const siteConfig = {
     keywords: ["web development", "design", "technology"],
     url: "/search"
   },
-  notFoundMeta: {
+  notFound: {
     titleSuffix: "404",
     description: "The page you are looking for does not exist.",
     longDescription: "The page you are looking for does not exist.",

@@ -19,7 +19,7 @@ const posts = (await getCollection(collectionName)).map((post) => ({
 
 <Layout>
   <Fragment slot="head">
-    <SEO meta="projectMeta" />
+    <SEO configKey="project" />
   </Fragment>
   <Section class="my-16">
     <ContentHeader title={config.texts.projectsName} cursor={false} />

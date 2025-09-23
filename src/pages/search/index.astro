@@ -10,7 +10,7 @@ const baseUrl = import.meta.env.BASE_URL;
 
 <Layout>
   <Fragment slot="head">
-    <SEO meta="searchMeta" />
+    <SEO configKey="search" />
     <link rel="stylesheet" href={import.meta.env.DEV ? '/dist/pagefind/pagefind-ui.css' : `${baseUrl}/pagefind/pagefind-ui.css`}>
     <style>
       /* Custom Pagefind styling */
