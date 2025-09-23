@@ -69,14 +69,7 @@ const allContent = [...blogPosts, ...notes, ...projects].sort((a, b) => {
 
 <Layout>
   <Fragment slot="head">
-    <SEO
-      title={`${tag} - ${config.globalMeta.title}`}
-      description={`All content tagged with "${tag}"`}
-      longDescription={`Browse all blog posts, notes, and projects tagged with "${tag}"`}
-      keywords={[tag, ...config.globalMeta.keywords]}
-      cardImage={config.globalMeta.cardImage}
-      url={`${baseUrl}/tags/${tag.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '')}`}
-    />
+    <SEO />
   </Fragment>
   
   <Section class="my-16">

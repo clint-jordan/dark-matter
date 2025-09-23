@@ -3,23 +3,10 @@ import { getCollection } from "astro:content";
 import PostSnippet from "../PostSnippet.astro";
 import Anchor from "../common/Anchor.astro";
 import { siteConfig } from "../../site.config";
+import { getPosts } from "../../lib/utils";
 
 const baseUrl = import.meta.env.BASE_URL;
-
-// Get all blog posts and sort by published date (most recent first)
-const allPosts = await getCollection("blog");
-const recentPosts = allPosts
-  .map((post) => ({
-    ...post.data,
-    url: `${baseUrl}/blog/${post.data.slug}`,
-  }))
-  .sort((a, b) => {
-    // Sort by published date, fallback to updated date, then by title
-    const dateA = a.published || a.updated || new Date(0);
-    const dateB = b.published || b.updated || new Date(0);
-    return dateB.getTime() - dateA.getTime();
-  })
-  .slice(0, 5); // Get only the 5 most recent posts
+const recentPosts = (await getPosts("blog")).slice(0, 5);
 ---
 
 <div class="space-y-0 mb-20">
