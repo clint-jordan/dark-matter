@@ -2,7 +2,11 @@
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import "../styles/global.css";
+import { siteConfig } from "../site.config";
 const baseUrl = import.meta.env.BASE_URL;
+
+const defaultTheme = siteConfig.site.defaultTheme ?? "dark";
+const allowThemeToggle = siteConfig.site.allowThemeToggle ?? true;
 ---
 
 <!doctype html>
@@ -19,26 +23,29 @@ const baseUrl = import.meta.env.BASE_URL;
     />
     
     <!-- Theme detection script - runs before page renders -->
-    <script is:inline>
-      const theme = (() => {
-        if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-          return localStorage.getItem("theme") ?? "light";
-        }
-        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-          return "dark";
-        }
-        return "light";
-      })();
+      <script is:inline define:vars={{ defaultTheme, allowThemeToggle }}>
+        const theme = (() => {
+          if (!allowThemeToggle && (defaultTheme === "light" || defaultTheme === "dark")) {
+            return defaultTheme;
+          }
+          if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+            return localStorage.getItem("theme") ?? "light";
+          }
+          if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            return "dark";
+          }
+          return "light";
+        })();
 
-      if (theme === "light") {
-        document.documentElement.classList.remove("dark");
-      } else {
-        document.documentElement.classList.add("dark");
-      }
+        if (theme === "light") {
+          document.documentElement.classList.remove("dark");
+        } else {
+          document.documentElement.classList.add("dark");
+        }
 
-      window.localStorage.setItem("theme", theme);
-    </script>
-    
+        window.localStorage.setItem("theme", theme);
+      </script>
+
     <slot name="head" />
   </head>
   <body class="theme-bg theme-text theme-transition font-mono min-h-screen flex flex-col justify-between">

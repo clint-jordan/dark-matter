@@ -1,12 +1,15 @@
 ---
+import { siteConfig } from "../site.config";
 ---
 
-<button 
+{siteConfig.site.allowThemeToggle && (
+  <button 
   id="theme-toggle" 
   class="theme-toggle"
   aria-label="Toggle theme"
 >
 </button>
+)}
 
 <script>
   const themeToggle = document.getElementById('theme-toggle');

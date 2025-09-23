@@ -14,7 +14,9 @@ export const siteConfig = {
     devPort: 4321,
     site: "https://clint-jordan.github.io",
     base: "/dark-matter",
-    showHomeHero: true
+    showHomeHero: true,
+    allowThemeToggle: true,
+    defaultTheme: "dark"
   },
   global: {
     title: "John Doe",
