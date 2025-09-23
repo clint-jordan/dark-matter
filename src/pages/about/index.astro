@@ -1,0 +1,25 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Section from "../../components/common/Section.astro";
+import SEO from "../../components/common/SEO.astro";
+import { siteConfig } from "../../site.config"
+import Hero from "../../components/common/Hero.astro";
+import Blurb from "../../components/about/Blurb.astro";
+
+const config = siteConfig;
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<Layout>
+  <Fragment slot="head">
+    <SEO meta="cvMeta" />
+  </Fragment>
+  <Section class="my-16">
+    <Hero 
+      title={siteConfig.aboutHero.title} 
+      subtitle={siteConfig.aboutHero.subtitle} 
+      image={siteConfig.aboutHero.image} 
+    />
+    <Blurb/>
+  </Section>
+</Layout>

@@ -13,7 +13,8 @@ export const siteConfig = {
   site: {
     devPort: 4321,
     site: "https://clint-jordan.github.io",
-    base: "/dark-matter"
+    base: "/dark-matter",
+    showHomeHero: true
   },
   globalMeta: {
     title: "John Doe",
@@ -70,15 +71,24 @@ export const siteConfig = {
     allowSearch: false,
     cardImage: "/card-image.webp",
   },
-  hero: {
-    title: "Foo",
-    subtitle: "A profound defining statement",
-    image: "/card-image.webp",
-    ctaText: "View Projects",
-    ctaUrl: "/projects"
+  homeHero: {
+    title: ["Software Developer.", "Robotics Enthusiast.", "Dork."],
+    subtitle: "This is a profound defining statement.",
+  },
+  cvHero: {
+    title: "John Doe",
+    subtitle: "If you're looking at this, I want to work for you",
+    image: "/hero.webp",
+  },
+  aboutHero: {
+    title: "Hi, I'm John",
+    subtitle: "I'm a software developer and this is my page",
+    image: "/hero.webp",
   },
   personal: {
     name: "John Doe",
+    firstName: "John",
+    lastName: "Doe",
     githubProfile: "https://github.com",
     twitterProfile: "https://twitter.com",
     linkedinProfile: "https://linkedin.com/"
@@ -98,6 +108,7 @@ export const siteConfig = {
     notes: "/notes",
     projects: "/projects",
     cv: "/cv",
+    about: "/about",
     search: "/search"
   }
 };

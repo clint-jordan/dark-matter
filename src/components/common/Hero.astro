@@ -1,21 +1,25 @@
 ---
-import { siteConfig } from "../../site.config";
-
+type Props = {
+  title: string;
+  subtitle: string;
+  image?: string;
+};
+const { title, subtitle, image } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <div class="flex justify-center items-center my-8 mb-15 gap-10">
-  <img 
-    src={`${baseUrl}/hero.webp`} 
+  {image && <img 
+    src={`${baseUrl}/${image}`} 
     alt="Profile image" 
     class="hero-image"
-  />
+  />}
   <div class="flex flex-col items-center">
     <h1 class="text-6xl sm:text-5xl font-display pb-2">
-      {siteConfig.personal.name}
+      {title}
     </h1>
     <span>
-      If you're looking at this, I want to work for you
+      {subtitle}
     </span>
   </div>
 </div>

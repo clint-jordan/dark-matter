@@ -1,21 +1,17 @@
 ---
 import { siteConfig } from "../../site.config";
-
-const baseUrl = import.meta.env.BASE_URL;
 ---
-
-<div class="flex justify-center items-center my-8 mb-15 gap-10">
-  <img 
-    src={`${baseUrl}/hero.webp`} 
-    alt="Profile image" 
-    class="hero-image"
-  />
-  <div class="flex flex-col items-center">
-    <h1 class="text-6xl sm:text-5xl font-display pb-2">
-      {siteConfig.personal.name}
-    </h1>
-    <span>
-      If you're looking at this, I want to work for you
-    </span>
+{siteConfig.site.showHomeHero && (
+  <div class="flex justify-left mb-20 mt-20">
+    <div class="flex flex-col items-left">
+      {siteConfig.homeHero.title.map((title: string) => (
+        <h1 class="text-6xl sm:text-5xl font-display pb-2">
+          {title}
+        </h1>
+      ))}
+      <span>
+        {siteConfig.homeHero.subtitle}
+      </span>
+    </div>
   </div>
-</div>
+)}
