@@ -261,4 +261,65 @@
   :where(.dark, .dark *) .theme-toggle {
     background-color: var(--color-theme-light);
   }
+
+  /* Inline code styling */
+  code {
+    @apply px-1.5 py-0.5 text-sm font-mono;
+    background-color: var(--color-theme-light-muted);
+    color: var(--color-theme-light);
+    border-radius: 0.25rem;
+    font-weight: 500;
+  }
+
+  code::before {
+    content: "" !important;
+  }
+
+  code::after {
+    content: "" !important;
+  }
+
+  :where(.dark, .dark *) code {
+    background-color: var(--color-theme-dark-muted);
+    color: var(--color-theme-dark);
+  }
+
+  /* Code block styling */
+  pre {
+    @apply p-4 rounded-lg overflow-x-auto;
+    background-color: var(--color-theme-dark-muted);
+    color: var(--color-theme-light);
+  }
+
+  :where(.dark, .dark *) pre {
+    background-color: var(--color-theme-light-muted);
+    color: var(--color-theme-dark);
+  }
+
+  pre code {
+    @apply p-0 bg-transparent;
+    color: inherit;
+  }
+}
+
+/* Table styling for dark mode */
+.prose table {
+  @apply border-collapse;
+}
+
+.prose th,
+.prose td {
+  @apply border border-gray-300 dark:border-gray-600 px-4 py-2;
+}
+
+.prose th {
+  @apply bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-semibold;
+}
+
+.prose td {
+  @apply text-gray-900 dark:text-gray-100;
+}
+
+.prose tbody tr:nth-child(even) {
+  @apply bg-gray-50 dark:bg-gray-900;
 }
