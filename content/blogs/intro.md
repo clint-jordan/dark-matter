@@ -216,7 +216,19 @@ That is so funny! :joy:
 
 Other emojis: 🚀 💻 🎨 🔍 📱 ⚡ 🛠️ 📊 🎯
 
-> [!NOTE]
-> Foo
+>[!NOTE]
+> Note
+
+>[!TIP]
+> Tip
+
+>[!IMPORTANT]
+> Important
+
+>[!CAUTION]
+> Caution
+
+>[!WARNING]
+> Warning
 
 ---
