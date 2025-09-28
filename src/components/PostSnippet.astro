@@ -10,9 +10,12 @@ export type Props = {
   tags?: string[];
   published?: Date;
   updated?: Date;
+  repoUrl?: string;
+  demoUrl?: string;
 };
 
-const { title, description, url, tags, published, updated } = Astro.props;
+const { title, description, url, tags, published, updated, repoUrl, demoUrl } = Astro.props;
+const repoName = repoUrl?.includes("github") ? "GitHub" : repoUrl?.includes("gitlab") ? "GitLab" : "Repo";
 ---
 
 <div class="relative theme-text theme-transition flex flex-col gap-3 mb-8">
@@ -20,12 +23,23 @@ const { title, description, url, tags, published, updated } = Astro.props;
     <Anchor url={url} additonalClasses="text-xl" hoverUnderline>
       {title}
     </Anchor>
-    <div class="flex flex-row gap-10 theme-muted">
-      <span class="theme-muted theme-transition">
-        {published ? processDate(published) : null}
-        {updated ? ` [${processDate(updated)}]` : null}
-      </span>
-    </div>
+    {(repoUrl || demoUrl) && (
+      <div class="flex flex-row gap-5">
+        <span>
+          {repoUrl ? <Anchor url={repoUrl} external hoverUnmute>{repoName}</Anchor> : null}
+        </span>
+        <span>
+          {demoUrl ? <Anchor url={demoUrl} external hoverUnmute>Live</Anchor> : null}
+        </span>
+      </div>
+    ) || (
+      <div class="flex flex-row gap-10 theme-muted">
+        <span class="theme-muted theme-transition">
+          {published ? processDate(published) : null}
+          {updated ? ` [${processDate(updated)}]` : null}
+        </span>
+      </div>
+    )}
   </div>
   <p class="">
     {description}
