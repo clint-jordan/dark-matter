@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import PostSnippet from "../PostSnippet.astro";
+import ProjectSnippet from "../ProjectSnippet.astro";
 import Anchor from "../common/Anchor.astro";
 import { siteConfig } from "../../site.config";
 import { getPosts } from "../../lib/utils";
@@ -15,20 +16,22 @@ const featuredProjects = (await getPosts("projects"))
   <div class="space-y-0 mb-20">
     <div class="flex justify-between items-center pb-5">
       <h2 class="text-3xl sm:text-4xl font-display theme-text">Featured Projects</h2>
-      <Anchor url={getUrl("projects")} class="theme-accent hover:theme-text transition-colors">
+      <Anchor url={getUrl("projects")} additonalClasses="theme-accent hover:theme-text transition-colors" hoverUnderline>
         View all projects →
       </Anchor>
     </div>
     
     <div class="space-y-6">
       {featuredProjects.map((project) => (
-        <PostSnippet
+        <ProjectSnippet
           title={project.title}
           description={project.description}
           url={project.url}
           tags={project.tags}
           published={project.published}
           updated={project.updated}
+          githubUrl={project.githubUrl}
+          liveDemoUrl={project.liveDemoUrl}
         />
       ))}
     </div>

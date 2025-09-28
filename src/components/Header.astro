@@ -20,7 +20,7 @@ const baseUrl = import.meta.env.BASE_URL;
           {
             Object.entries(config.menu).map((i) => {
             const isActive = currentPath === getUrl(i[1]);
-              return (<a href={getUrl(i[1])} class={`link-hover nav ${isActive ? 'active' : ''}`}>{i[0]}</a>);
+              return (<a href={getUrl(i[1])} class={`hover-underline nav ${isActive ? 'active' : ''}`}>{i[0]}</a>);
             })
           }
           <ThemeToggle />

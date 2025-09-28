@@ -116,14 +116,14 @@
 
   .theme-fill {
     fill: var(--color-theme-dark);
-    &:where(.dark, .dark *) {
+    :where(.dark, .dark *) & {
       fill: var(--color-theme-light);
     }
   }
 
   .theme-text-muted {
     color: var(--color-theme-dark-muted);
-    &:where(.dark, .dark *) {
+    :where(.dark, .dark *) & {
       color: var(--color-theme-light-muted);
     }
   }
@@ -131,7 +131,7 @@
   .theme-border-b {
     border-bottom: var(--theme-stroke) solid;
     border-color: var(--color-theme-dark);
-    &:where(.dark, .dark *) {
+    :where(.dark, .dark *) & {
       border-color: var(--color-theme-light);
     }
   }
@@ -189,14 +189,13 @@
     51%, 100% { opacity: 0; }
   }
 
-  /* Base link hover styles - apply this class to any element that needs the underline effect */
-  .link-hover {
+  .hover-underline {
     position: relative;
     text-decoration: none;
     display: inline-block;
   }
 
-  .link-hover::after {
+  .hover-underline::after {
     content: '';
     position: absolute;
     bottom: var(--underline-bottom, -2px);
@@ -207,25 +206,42 @@
     transition: width 0.3s ease;
   }
 
-  .link-hover:hover::after {
+  .hover-underline:hover::after {
     width: 100%;
   }
 
-  /* Specific bottom positions for different use cases */
-  .link-hover.nav {
+  .hover-underline.nav {
     --underline-bottom: -4px;
   }
 
-  .link-hover.nav.active::after {
+  .hover-underline.nav.active::after {
     width: 100%;
   }
 
-  .link-hover.anchor {
+  .hover-underline.anchor {
     --underline-bottom: -2px;
   }
 
-  .link-hover.anchor.no-hover::after {
-    display: none;
+  .hover-unmute {
+    color: var(--color-theme-dark-muted);
+    :where(.dark, .dark *) & {
+      color: var(--color-theme-light-muted);
+    }
+    fill: var(--color-theme-dark-muted) !important;
+    :where(.dark, .dark *) & {
+      fill: var(--color-theme-light-muted) !important;
+    }
+  }
+
+  .hover-unmute:hover {
+    color: var(--color-theme-dark);
+    :where(.dark, .dark *) & {
+      color: var(--color-theme-light);
+    }
+    fill: var(--color-theme-dark) !important;
+    :where(.dark, .dark *) & {
+      fill: var(--color-theme-light) !important;
+    }
   }
 
   .link-hover.pagefind-link {
