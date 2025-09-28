@@ -1,16 +1,16 @@
 ---
+import { getUrl } from "../../lib/utils";
 export type Props = {
   tags?: string[];
 };
 const { tags } = Astro.props
-const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <div class="flex flex-row wrap gap-2">
   {
     tags?.map((tag) => (
       <a 
-        href={`${baseUrl}/tags/${tag.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '')}`}
+        href={getUrl(`tags/${tag.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '')}`)}
         class="tag"
       >
         {tag}

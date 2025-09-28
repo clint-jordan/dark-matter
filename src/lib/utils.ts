@@ -13,7 +13,8 @@ const baseUrl = import.meta.env.BASE_URL;
  * @param timestamp the timestamp to process
  * @returns a string representing the processed timestamp
  */
-export const processDate = (date: Date) => {
+export const processDate = (date: Date | undefined | null) => {
+  if (!date) return "";
   const monthSmall = date.toLocaleString("default", { month: "short" });
   const day = date.getDate();
   const year = date.getFullYear();
@@ -24,7 +25,7 @@ export const getPosts = async (collectionName: keyof typeof collections) => {
   const posts = await getCollection(collectionName);
   return posts.map((post) => ({
     ...post.data,
-    url: `${baseUrl}/${collectionName}/${post.data.slug}`,
+    url: getUrl(`${collectionName}/${post.data.slug}`),
   }))
   .sort((a, b) => {
     // Sort by published date, fallback to updated date, then by title
@@ -33,3 +34,9 @@ export const getPosts = async (collectionName: keyof typeof collections) => {
     return dateB.getTime() - dateA.getTime();
   })
 };
+
+export const getUrl = (p: string) => {
+  const base = baseUrl.endsWith("/") ? baseUrl : baseUrl + "/";
+  const path = p.startsWith("/") ? p.slice(1, p.length) : p;
+  return base + path;
+}

@@ -1,16 +1,16 @@
 ---
+import { getUrl } from "../../lib/utils";
 type Props = {
   title: string;
   subtitle: string;
   image?: string;
 };
 const { title, subtitle, image } = Astro.props;
-const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <div class="flex justify-center items-center my-8 mb-15 gap-10">
   {image && <img 
-    src={`${baseUrl}/${image}`} 
+    src={getUrl(image)} 
     alt="Profile image" 
     class="hero-image"
   />}

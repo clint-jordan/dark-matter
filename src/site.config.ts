@@ -18,6 +18,14 @@ export const siteConfig = {
     allowThemeToggle: true,
     defaultTheme: "dark"
   },
+  personal: {
+    name: "John Doe",
+    firstName: "John",
+    lastName: "Doe",
+    githubProfile: "https://github.com",
+    twitterProfile: "https://twitter.com",
+    linkedinProfile: "https://linkedin.com/"
+  },
   global: {
     title: "John Doe",
     description: "",
@@ -87,14 +95,6 @@ export const siteConfig = {
     subtitle: "I'm a software developer and this is my page",
     image: "/hero.webp",
   },
-  personal: {
-    name: "John Doe",
-    firstName: "John",
-    lastName: "Doe",
-    githubProfile: "https://github.com",
-    twitterProfile: "https://twitter.com",
-    linkedinProfile: "https://linkedin.com/"
-  },
   texts: {
     blogName: "Blog",
     projectsName: "Projects",
@@ -106,11 +106,11 @@ export const siteConfig = {
   },
   menu: {
     // home: "/",
-    blog: "/blog",
-    notes: "/notes",
-    projects: "/projects",
-    cv: "/cv",
-    about: "/about",
-    search: "/search"
+    blog: "blog",
+    notes: "notes",
+    projects: "projects",
+    cv: "cv",
+    about: "about",
+    search: "search"
   }
 };
