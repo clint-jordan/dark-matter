@@ -13,21 +13,21 @@ export const siteConfig = {
   site: {
     devPort: 4321,
     site: "https://clint-jordan.github.io",
-    base: "/dark-matter",
-    showHomeHero: true,
+    base: "/",
+    showHomeHero: false,
     allowThemeToggle: true,
     defaultTheme: "dark"
   },
   personal: {
-    name: "John Doe",
-    firstName: "John",
-    lastName: "Doe",
+    name: "Clint Jordan",
+    firstName: "Clint",
+    lastName: "Jordan",
     githubProfile: "https://github.com",
     twitterProfile: "https://twitter.com",
     linkedinProfile: "https://linkedin.com/"
   },
   global: {
-    title: "John Doe",
+    title: "clint-jordan",
     description: "",
     longDescription: "",
     cardImage: "/card-image.webp",
@@ -86,12 +86,12 @@ export const siteConfig = {
     subtitle: "This is a profound defining statement.",
   },
   cvHero: {
-    title: "John Doe",
+    title: "Clint Jordan",
     subtitle: "If you're looking at this, I want to work for you",
     image: "/hero.webp",
   },
   aboutHero: {
-    title: "Hi, I'm John",
+    title: "Hi, I'm Clint",
     subtitle: "I'm a software developer and this is my page",
     image: "/hero.webp",
   },
@@ -109,8 +109,8 @@ export const siteConfig = {
     blog: "blog",
     notes: "notes",
     projects: "projects",
-    cv: "cv",
-    about: "about",
+    // cv: "cv",
+    // about: "about",
     search: "search"
   }
 };
