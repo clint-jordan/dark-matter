@@ -17,7 +17,7 @@ const { title, description, url, tags, published, updated } = Astro.props;
 
 <div class="relative theme-text theme-transition flex flex-col gap-3 mb-8">
   <div class="flex justify-between items-center">
-    <Anchor url={url} class="text-xl">
+    <Anchor url={url} additonalClasses="text-xl" hoverUnderline>
       {title}
     </Anchor>
     <div class="flex flex-row gap-10 theme-muted">

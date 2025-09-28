@@ -10,20 +10,24 @@ export type Props = {
   tags?: string[];
   published?: Date;
   updated?: Date;
+  githubUrl?: string;
+  liveDemoUrl?: string;
 };
 
-const { title, description, url, tags, published, updated } = Astro.props;
+const { title, description, url, tags, published, updated, githubUrl, liveDemoUrl } = Astro.props;
 ---
 
 <div class="relative theme-text theme-transition flex flex-col gap-3 mb-8">
   <div class="flex justify-between items-center">
-    <Anchor url={url} class="text-xl">
+    <Anchor url={url} additonalClasses="text-xl" hoverUnderline>
       {title}
     </Anchor>
-    <div class="flex flex-row gap-10 theme-muted">
-      <span class="theme-muted theme-transition">
-        {published ? processDate(published) : null}
-        {updated ? ` [${processDate(updated)}]` : null}
+    <div class="flex flex-row gap-5">
+      <span>
+        {githubUrl ? <Anchor url={githubUrl} external hoverUnmute>GitHub</Anchor> : null}
+      </span>
+      <span>
+        {liveDemoUrl ? <Anchor url={liveDemoUrl} external hoverUnmute>Live</Anchor> : null}
       </span>
     </div>
   </div>

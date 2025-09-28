@@ -1,25 +1,28 @@
 ---
 export type Props = {
   url: string;
-  class?: string;
+  additonalClasses?: string;
   external?: boolean;
   "aria-label"?: string;
-  noHover?: boolean;
+  hoverUnderline?: boolean;
+  hoverUnmute?: boolean;
 };
 
-const { url, external, class: className, noHover } = Astro.props;
+const { url, external, additonalClasses, hoverUnderline, hoverUnmute } = Astro.props;
 ---
 
 <a
   href={url}
   class:list={[
-    "theme-offset font-medium flex items-center focus:outline-2 focus:outline-offset-2 focus:outline-theme-dark dark:focus:outline-theme-light",
-    className,
+    "theme-offset font-medium flex items-center",
+    additonalClasses,
+    "anchor",
+    hoverUnmute ? "hover-unmute" : "theme-fill",
   ]}
   target={external ? "_blank" : "_self"}
   aria-label={Astro.props["aria-label"]}
 >
-  <span class:list={["link-hover", "anchor", { "no-hover": noHover }]}>
+  <span class:list={[hoverUnderline ? "hover-underline" : null]}>
     <slot />
   </span>
   {
@@ -30,7 +33,6 @@ const { url, external, class: className, noHover } = Astro.props;
         viewBox="0 0 512 512"
       >
         <path
-          class="theme-fill theme-transition"
           fill-rule="evenodd"
           d="M362.666 149.333V320H320l-.001-97.831l-154.51 154.51l-30.169-30.17L289.829 192h-97.83v-42.666z"
         />
