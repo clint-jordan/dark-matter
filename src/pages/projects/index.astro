@@ -1,16 +1,13 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Section from "../../components/common/Section.astro";
-import PostSnippet from "../../components/PostSnippet.astro";
-import { getCollection } from "astro:content";
+import PostSnippet from "../../components/common/PostSnippet.astro";
 import { siteConfig } from "../../site.config"
 import ContentHeader from "../../components/common/ContentHeader.astro";
 import SEO from "../../components/common/SEO.astro";
 import { getPosts } from "../../lib/utils";
 
 const config = siteConfig;
-const baseUrl = import.meta.env.BASE_URL;
-
 const posts = (await getPosts("projects"));
 ---
 
