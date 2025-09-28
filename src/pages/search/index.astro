@@ -2,16 +2,12 @@
 import Layout from "../../layouts/Layout.astro";
 import Section from "../../components/common/Section.astro";
 import SEO from "../../components/common/SEO.astro";
-import { siteConfig } from "../../site.config"
-
-const config = siteConfig;
-const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <Layout>
   <Fragment slot="head">
     <SEO configKey="search" />
-    <link rel="stylesheet" href={import.meta.env.DEV ? '/dist/pagefind/pagefind-ui.css' : `${baseUrl}/pagefind/pagefind-ui.css`}>
+    <link rel="stylesheet" href={import.meta.env.DEV ? '/dist/pagefind/pagefind-ui.css' : "/pagefind/pagefind-ui.css"} >
     <style>
       /* Custom Pagefind styling */
       :root {
@@ -82,12 +78,12 @@ const baseUrl = import.meta.env.BASE_URL;
   </Section>
 </Layout>
 
-<script is:inline define:vars={{ baseUrl, isDev: import.meta.env.DEV }}>
+<script is:inline define:vars={{ isDev: import.meta.env.DEV }}>
   // Simple Pagefind initialization
   window.addEventListener('load', function() {
     console.log('Page loading, initializing search...');
     const script = document.createElement('script');
-    script.src = isDev ? '/dist/pagefind/pagefind-ui.js' : `${baseUrl}/pagefind/pagefind-ui.js`;
+    script.src = isDev ? '/dist/pagefind/pagefind-ui.js' : "/pagefind/pagefind-ui.js";
     script.onload = function() {
       console.log('Pagefind UI script loaded successfully');
       const pagefindUI = new PagefindUI({
