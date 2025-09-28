@@ -80,8 +80,8 @@ export const contentTypes = {
     layout: "ProjectLayout", 
     menuItem: true,
     schema: baseSchema.extend({
-      githubUrl: z.string().url().optional(),
-      liveDemoUrl: z.string().url().optional(),
+      repoUrl: z.string().url().optional(),
+      demoUrl: z.string().url().optional(),
     }),
   })
 } as const;
