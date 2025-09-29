@@ -12,7 +12,7 @@ export interface MetaData {
 export const siteConfig = {
   site: {
     devPort: 4321,
-    site: "https://clint-jordan.github.io",
+    site: "https://your-website.com",
     base: "/dark-matter",
     showHomeHero: true,
     allowThemeToggle: true,
@@ -82,7 +82,7 @@ export const siteConfig = {
     cardImage: "/card-image.webp",
   },
   homeHero: {
-    title: ["Software Developer.", "Robotics Enthusiast.", "Dork."],
+    title: ["Software Developer.", "Robotics Enthusiast.", "Olympic Athlete.", "Dork."],
     subtitle: "This is a profound defining statement.",
   },
   aboutHero: {
