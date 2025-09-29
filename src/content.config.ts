@@ -86,8 +86,56 @@ export const contentTypes = {
   })
 } as const;
 
+// CV Collection Schema
+const cvSchema = z.object({
+  hero: z.object({
+    title: z.string(),
+    subtitle: z.string(),
+    image: z.string(),
+  }),
+  summary: z.string(),
+  experience: z.object({
+    sectionTitle: z.string(),
+    positions: z.array(z.object({
+      title: z.string(),
+      employer: z.string(),
+      startDate: z.string(),
+      endDate: z.string(),
+      bullets: z.array(z.string()),
+    })),
+  }),
+  otherExperience: z.object({
+    sectionTitle: z.string(),
+    positions: z.array(z.object({
+      title: z.string(),
+      employer: z.string(),
+      startDate: z.string(),
+      endDate: z.string(),
+      bullets: z.array(z.string()),
+    })),
+  }),
+  education: z.object({
+    degrees: z.array(z.object({
+      title: z.string(),
+      school: z.string(),
+      dateObtained: z.string(),
+      honors: z.string().optional(),
+    })),
+  }),
+  strengths: z.object({
+    sectionTitle: z.string(),
+    strengths: z.array(z.any()),
+  }),
+});
+
+const cvCollection = defineCollection({
+  loader: glob({ pattern: "**/*.yaml", base: "./content/cv" }),
+  schema: cvSchema,
+});
+
 export const collections = {
   blog: contentTypes.blog.collection,
   projects: contentTypes.projects.collection,
   notes: contentTypes.notes.collection,
+  cv: cvCollection,
 }
