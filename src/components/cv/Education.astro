@@ -1,8 +1,14 @@
 ---
-import { education } from "../../cv.config";
 import SectionHeader from "./SectionHeader.astro";
+import type { Education } from "../../lib/cv.types";
 
 const title = "Education"
+
+export type Props = {
+  education: Education
+};
+
+const { education } = Astro.props;
 ---
 
 <div class="relative theme-text theme-transition flex flex-col gap-3 mb-8">

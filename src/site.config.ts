@@ -64,7 +64,7 @@ export const siteConfig = {
     cardImage: "/card-image.webp",
     keywords: ["web development", "design", "technology"],
     allowSearch: false,
-    url: "/cv"
+    publish: ["cv", "special"]
   },
   search: {
     titleSuffix: "Search",
@@ -85,11 +85,6 @@ export const siteConfig = {
     title: ["Software Developer.", "Robotics Enthusiast.", "Dork."],
     subtitle: "This is a profound defining statement.",
   },
-  cvHero: {
-    title: "John Doe",
-    subtitle: "If you're looking at this, I want to work for you",
-    image: "/hero.webp",
-  },
   aboutHero: {
     title: "Hi, I'm John",
     subtitle: "I'm a software developer and this is my page",
@@ -105,7 +100,7 @@ export const siteConfig = {
     noProjects: "No projects found."
   },
   menu: {
-    // home: "/",
+    // nav_bar_name: "path/to/page",
     blog: "blog",
     notes: "notes",
     projects: "projects",
