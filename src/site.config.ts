@@ -59,12 +59,8 @@ export const siteConfig = {
   },
   cv: {
     titleSuffix: "CV",
-    description: "",
-    longDescription: "",
-    cardImage: "/card-image.webp",
-    keywords: ["web development", "design", "technology"],
     allowSearch: false,
-    publish: ["general", "special"]
+    publish: []
   },
   search: {
     titleSuffix: "Search",
@@ -104,8 +100,8 @@ export const siteConfig = {
     blog: "blog",
     notes: "notes",
     projects: "projects",
-    cv: "cv/general",
-    about: "about",
+    // cv: "cv/general",
+    // about: "about",
     search: "search"
   }
 };
