@@ -64,7 +64,7 @@ export const siteConfig = {
     cardImage: "/card-image.webp",
     keywords: ["web development", "design", "technology"],
     allowSearch: false,
-    publish: ["cv", "special"]
+    publish: ["general", "special"]
   },
   search: {
     titleSuffix: "Search",
@@ -104,7 +104,7 @@ export const siteConfig = {
     blog: "blog",
     notes: "notes",
     projects: "projects",
-    cv: "cv",
+    cv: "cv/general",
     about: "about",
     search: "search"
   }

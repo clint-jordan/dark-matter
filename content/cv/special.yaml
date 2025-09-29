@@ -1,0 +1,94 @@
+hero:
+  title: "John Doe"
+  subtitle: "If you're looking at this, I want to work for you"
+  image: "/hero.webp"
+
+summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+experience:
+  sectionTitle: "Relevant Experience"
+  positions:
+    - title: "Lead Software Engineer"
+      employer: "Super Impressive Tech Company"
+      startDate: "Dec 2023"
+      endDate: "Current"
+      bullets:
+        - "Mentored others that develop complicated web applications"
+        - "Shipped many features"
+        - "Occasionally glanced at phone"
+    - title: "Senior Software Engineer"
+      employer: "Super Impressive Tech Company"
+      startDate: "Dec 2023"
+      endDate: "Dec 2024"
+      bullets:
+        - "Developed complicated web applications"
+        - "Shipped features"
+        - "Very little time spent looking at phone"
+    - title: "Software Engineer"
+      employer: "Big Impressive Tech Company"
+      startDate: "Dec 2022"
+      endDate: "Dec 2023:"
+      bullets:
+        - "Developed web applications"
+        - "Tested, deployed"
+        - "Significant time spent looking at phone"
+    - title: "Graduate Teaching Assistant"
+      employer: "Super Elite Ivy League College"
+      startDate: "Jan 2018"
+      endDate: "Dec 2022"
+      bullets:
+        - "Assisted teaching intro to computer science"
+        - "Led laboratory exercises"
+        - "Watched students look at their phones constantly"
+
+otherExperience:
+  sectionTitle: "Other Experience"
+  positions:
+    - title: "Lifeguard"
+      employer: "US Olympic Training Center"
+      startDate: "Dec 2014"
+      endDate: "Dec 2018"
+      bullets:
+        - "Occassionally rescued olympic athletes"
+    - title: "Head of Robotics Club"
+      employer: "Super Elite High School"
+      startDate: "Dec 2014"
+      endDate: "Dec 2018"
+      bullets:
+        - "Led robotics labs for fellow high school students"
+        - "Taught robotics to gifted toddlers"
+
+education:
+  degrees:
+    - title: "PhD Computer Science"
+      school: "Super Elite Ivy League School"
+      dateObtained: "Dec 2023"
+      honors: "summa cum laude"
+    - title: "MS Computer Science"
+      school: "Another Ivy League School"
+      dateObtained: "Dec 2021"
+      honors: "summa cum laude"
+    - title: "BS Computer Science"
+      school: "Ivy League School"
+      dateObtained: "Dec 2017"
+      honors: "summa cum laude"
+
+strengths:
+  sectionTitle: "Technical Strengths"
+  strengths:
+    - - item: "Programming Languages that I know and love"
+        subItem: ["Visual Basic", "COBOL", "Pascal"]
+      - item: "Web Development"
+        subItem: ["React", "Vue", "Angular"]
+      - item: "Technical Work"
+        subItem:
+          item: "Doing lots of stuff"
+          subItem: ["Computers", "Printers", "Fax Machines"]
+    - - item: "Programming Languages that I know and love"
+        subItem: ["Visual Basic", "COBOL", "Pascal"]
+      - item: "Web Development"
+        subItem: ["React", "Vue", "Angular"]
+      - item: "Technical Work"
+        subItem:
+          item: "Doing lots of stuff"
+          subItem: ["Computers", "Printers", "Fax Machines"]
