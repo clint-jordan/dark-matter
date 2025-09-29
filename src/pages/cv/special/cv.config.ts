@@ -5,7 +5,7 @@ import type {
   Education,
   StrengthItem,
   Strengths
-} from "./lib/cv.types"
+} from "../../../lib/cv.types"
 
 const p1: Position = {
   title: "Lead Software Engineer",
@@ -155,7 +155,9 @@ export const strengths: Strengths = {
   sectionTitle: "Technical Strengths",
   strengths: [strengthBulletsLeft, strengthBulletsRight]
 }
-// export const strengths: Strengths = {
-//   sectionTitle: "Technical Strengths",
-//   strengths: strengthBullets
-// }
+
+export const hero = {
+  title: "Clint Jordan",
+  subtitle: "If you're looking at this, I want to work for you",
+  image: "/hero.webp",
+}

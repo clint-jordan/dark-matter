@@ -1,0 +1,38 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Section from "../../../components/common/Section.astro";
+import SEO from "../../../components/common/SEO.astro";
+import Hero from "../../../components/common/Hero.astro";
+import Experience from "../../../components/cv/Experience.astro"
+import Summary from "../../../components/cv/Summary.astro"
+import Strengths from "../../../components/cv/Strengths.astro"
+import Education from "../../../components/cv/Education.astro"
+import NotFound from "../../404.astro"
+import { siteConfig } from "../../../site.config"
+import { experience, otherExperience, strengths, education, hero } from "./cv.config";
+
+const cv = import.meta.url.split('/').slice(-2, -1)[0];
+const isPublished = siteConfig.cv.publish.includes(cv);
+---
+
+{isPublished && (
+  <Layout>
+  <Fragment slot="head">
+    <SEO configKey="cv" />
+  </Fragment>
+  <Section class="my-16">
+    <Hero 
+      title={hero.title} 
+      subtitle={hero.subtitle} 
+      image={hero.image} 
+    />
+    <Summary />
+    <Strengths strengths={strengths} />
+    <Experience experience={experience} />
+    <Education education={education}/>
+    <Experience experience={otherExperience} />
+  </Section>
+</Layout>
+) || (
+  <NotFound />
+)}
