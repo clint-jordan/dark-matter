@@ -4,8 +4,9 @@ import Anchor from "./common/Anchor.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import { getUrl } from "../lib/utils";
 
+const debug = false;
 const config = siteConfig;
-const currentPath = Astro.url.pathname;
+const currentPath = Astro.url.pathname.endsWith("/") ? Astro.url.pathname.slice(0, -1) : Astro.url.pathname;
 const baseUrl = import.meta.env.BASE_URL;
 ---
 
@@ -29,3 +30,13 @@ const baseUrl = import.meta.env.BASE_URL;
   </div>
   <hr class="w-full border-t border-gray-300 dark:border-gray-600 my-1" />
 </header>
+
+{debug && (
+<div style="position: fixed; top: 0; left: 0; background: red; color: white; padding: 10px; z-index: 9999; font-size: 12px;">
+  <div>Current Path: {currentPath}</div>
+  <div>Base URL: {baseUrl}</div>
+  {Object.entries(config.menu).map((i) => (
+    <div>Menu {i[0]}: {getUrl(i[1])} | Active: {currentPath === getUrl(i[1]) ? 'YES' : 'NO'}</div>
+  ))}
+</div>
+)}
