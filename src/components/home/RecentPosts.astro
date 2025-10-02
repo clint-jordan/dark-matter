@@ -7,6 +7,7 @@ import { getUrl } from "../../lib/utils";
 const recentPosts = (await getPosts("blog")).slice(0, 5);
 ---
 
+{recentPosts.length > 0 && (
 <div class="space-y-0 mb-20">
   <div class="flex justify-between items-center pb-5">
     <h2 class="text-3xl sm:text-4xl font-display theme-text">Recent Posts</h2>
@@ -15,20 +16,17 @@ const recentPosts = (await getPosts("blog")).slice(0, 5);
     </Anchor>
   </div>
   
-  {recentPosts.length > 0 ? (
-    <div class="space-y-6">
-      {recentPosts.map((post) => (
-        <PostSnippet
-          title={post.title}
-          description={post.description}
-          url={post.url}
-          tags={post.tags}
-          published={post.published}
-          updated={post.updated}
-        />
-      ))}
-    </div>
-  ) : (
-    <p class="theme-muted">No blog posts yet.</p>
-  )}
+  <div class="space-y-6">
+    {recentPosts.map((post) => (
+      <PostSnippet
+        title={post.title}
+        description={post.description}
+        url={post.url}
+        tags={post.tags}
+        published={post.published}
+        updated={post.updated}
+      />
+    ))}
+  </div>
 </div>
+)}
