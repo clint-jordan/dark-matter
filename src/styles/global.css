@@ -376,3 +376,15 @@
 .markdown-alert-title {
   display: none;
 }
+
+ul li {
+  list-style-type: disc;
+}
+
+ul ul li {
+  list-style-type: circle;
+}
+
+ul ul ul li {
+  list-style-type: square;
+}
