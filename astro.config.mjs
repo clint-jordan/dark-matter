@@ -3,6 +3,7 @@ import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import { siteConfig } from "./src/site.config";
 import remarkGitHubAlerts from "remark-github-markdown-alerts";
+import rehypeExternalLinks from "rehype-external-links";
 
 // https://astro.build/config
 export default defineConfig({
@@ -24,6 +25,6 @@ export default defineConfig({
     gfm: true,
     smartypants: true,
     remarkPlugins: [remarkGitHubAlerts],
-    rehypePlugins: [],
+    rehypePlugins: [[rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }]],
   }
 });
