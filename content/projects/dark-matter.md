@@ -10,11 +10,12 @@ demoUrl: https://clint-jordan.github.io/dark-matter
 published: 2025-02-24T02:39:03+00:00
 updated: 2025-02-24T02:39:03+00:00
 featured: true
+draft: false
 ---
 
 ## The Details
 Dark Matter is a simple astro theme for portfolios, blogs, resume, or just a
-nice place for your notes.
+nice place for your notes. Spoiler, it looks a lot like this website.
 
 
 ## Demo
