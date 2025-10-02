@@ -27,6 +27,7 @@ export const getPosts = async (collectionName: keyof typeof collections) => {
     ...post.data,
     url: getUrl(`${collectionName}/${post.data.slug}`),
   }))
+  .filter((post) => !post.draft)
   .sort((a, b) => {
     // Sort by published date, fallback to updated date, then by title
     const dateA = a.published || a.updated || new Date(0);

@@ -9,6 +9,7 @@ const baseSchema = z.object({
   cardImage: z.string().optional(),
   tags: z.array(z.string()).optional(),
   featured: z.boolean().default(false),
+  draft: z.boolean().default(false),
   published: z.date().transform((val) => new Date(val)).optional(),
   updated: z.date().transform((val) => new Date(val)).optional(),
 });
