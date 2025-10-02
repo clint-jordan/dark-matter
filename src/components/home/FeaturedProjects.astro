@@ -1,12 +1,10 @@
 ---
 import PostSnippet from "../common/PostSnippet.astro";
 import Anchor from "../common/Anchor.astro";
-import { getPosts } from "../../lib/utils";
+import { getFeaturedPosts } from "../../lib/utils";
 import { getUrl } from "../../lib/utils";
 
-const featuredProjects = (await getPosts("projects"))
-  .filter((project) => project.featured === true)
-  .slice(0, 5);
+const featuredProjects = (await getFeaturedPosts("projects"));
 ---
 
 {featuredProjects.length > 0 && (

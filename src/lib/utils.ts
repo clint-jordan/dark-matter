@@ -7,6 +7,7 @@ import type { collections } from "../content.config";
 import { contentTypes } from "../content.config";
 import { siteConfig } from "../site.config";
 const baseUrl = import.meta.env.BASE_URL;
+const isDev = import.meta.env.DEV;
 
 /**
  * Processes the date of an article and returns a string representing the processed date.
@@ -27,7 +28,13 @@ export const getPosts = async (collectionName: keyof typeof collections) => {
     ...post.data,
     url: getUrl(`${collectionName}/${post.data.slug}`),
   }))
-  .filter((post) => !post.draft)
+  .filter((post) => {
+    if (isDev) {
+      return true;
+    } else {
+      return !post.draft
+    }
+  })
   .sort((a, b) => {
     // Sort by published date, fallback to updated date, then by title
     const dateA = a.published || a.updated || new Date(0);
@@ -35,6 +42,11 @@ export const getPosts = async (collectionName: keyof typeof collections) => {
     return dateB.getTime() - dateA.getTime();
   })
 };
+
+export const getFeaturedPosts = async (collectionName: keyof typeof collections) => {
+  const posts = await getPosts(collectionName)
+  return posts.filter((post) => post.feature === true).slice(0, 5);
+}
 
 export const getUrl = (p: string) => {
   const base = baseUrl.endsWith("/") ? baseUrl : baseUrl + "/";
