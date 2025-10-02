@@ -8,8 +8,8 @@ const baseSchema = z.object({
   longDescription: z.string().optional(),
   cardImage: z.string().optional(),
   tags: z.array(z.string()).optional(),
-  featured: z.boolean().default(false),
-  draft: z.boolean().default(false),
+  feature: z.boolean().default(false),
+  draft: z.boolean().default(true),
   published: z.date().transform((val) => new Date(val)).optional(),
   updated: z.date().transform((val) => new Date(val)).optional(),
 });

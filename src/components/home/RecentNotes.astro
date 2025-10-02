@@ -1,10 +1,10 @@
 ---
 import PostSnippet from "../common/PostSnippet.astro";
 import Anchor from "../common/Anchor.astro";
-import { getPosts } from "../../lib/utils";
+import { getFeaturedPosts } from "../../lib/utils";
 import { getUrl } from "../../lib/utils";
 
-const recentNotes = (await getPosts("notes")).slice(0, 5);
+const recentNotes = (await getFeaturedPosts("notes"));
 ---
 
 {recentNotes.length > 0 && (
