@@ -7,6 +7,7 @@ import Prose from "../components/Prose.astro";
 import Layout from "./Layout.astro";
 import SEO from "../components/common/SEO.astro";
 import ContentLayoutHeader from "../components/common/ContentLayoutHeader.astro";
+import DraftBox from "../components/common/DraftBox.astro";
 
 type Props = { frontmatter: PostFrontmatter };
 
@@ -15,7 +16,8 @@ const publishDate = processDate(frontmatter.published);
 const updateDate = processDate(frontmatter.updated);
 const tags = frontmatter.tags;
 const config = siteConfig;
-const baseUrl = import.meta.env.BASE_URL;
+const isDev = import.meta.env.DEV;
+const isDraft = frontmatter.draft;
 ---
 
 <Layout>
@@ -23,6 +25,7 @@ const baseUrl = import.meta.env.BASE_URL;
     <SEO configKey="notes" />
   </Fragment>
   <Section class="pt-8">
+    {isDev && isDraft && <DraftBox />}
     <ContentLayoutHeader 
       title={frontmatter.title} 
       tags={tags} 
