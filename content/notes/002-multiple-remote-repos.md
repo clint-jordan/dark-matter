@@ -12,12 +12,12 @@ draft: false
 ---
 
 
-# Why?
+## Why?
 
 While making this website I ran into a situation where I needed to maintain two
 separate repositories that shared features, but not content, settings, images, etc.
 
-# How?
+## How?
 
 Main repo in this case refers to my website and the second repo refers to the
 astro theme.
