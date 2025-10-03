@@ -12,8 +12,8 @@ draft: false
 ---
 
 
-## Welcome
+## Welcome to My Blog
 
-Welcome to my blog. This is where I'll be sharing all my thoughts and
-experiences with the zero people that will view this website. I'm glad you're
-here.
+This is an insanely small little corner of the web you've found. I've got some
+pretty standard blog stuff planned (nothing). Maybe I'll write some techie
+articles here and there. Maybe I'll just post some cool photos.
