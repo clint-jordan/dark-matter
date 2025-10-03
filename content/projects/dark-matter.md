@@ -29,7 +29,7 @@ see it in action!
 This theme was inspired by the following projects:
 
 - John Memmott ([RATIU5](https://github.com/RATIU5))
-  * [Zaggonaut](https://github.com/RATIU5/zaggonaut)
+  * [Zaggonaut](https://zaggonaut.dev)
 - Chris Williams ([chriswilliams](https://github.com/chrismwilliams))
   * [chriswilliams.dev](https://chriswilliams.dev)
 - Kaushal Modi ([kaushalmodi](https://github.com/kaushalmodi))
