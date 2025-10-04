@@ -25,6 +25,8 @@ export default defineConfig({
     gfm: true,
     smartypants: true,
     remarkPlugins: [remarkGitHubAlerts],
-    rehypePlugins: [[rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }]],
+        rehypePlugins: [
+          [rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }]
+        ],
   }
 });

@@ -388,3 +388,69 @@ ul ul li {
 ul ul ul li {
   list-style-type: square;
 }
+
+/* Tabbed Code Blocks */
+.tabbed-code-blocks {
+  @apply my-6 rounded-lg overflow-hidden;
+  background-color: var(--color-theme-light-muted);
+  border: 1px solid var(--color-theme-light-muted);
+}
+
+:where(.dark, .dark *) .tabbed-code-blocks {
+  background-color: var(--color-theme-light-mute);
+  border-color: var(--color-theme-dark-muted);
+}
+
+.tabbed-code-tabs {
+  @apply flex border-b;
+  border-color: var(--color-theme-light-muted);
+  background-color: var(--color-theme-dark-muted);
+}
+
+.tabbed-code-tab {
+  @apply px-4 py-3 text-sm font-medium cursor-pointer transition-all duration-200;
+  background-color: transparent;
+  color: var(--color-theme-light-muted);
+  border: none;
+  border-bottom: 2px solid transparent;
+  position: relative;
+}
+
+.tabbed-code-tab:hover {
+  color: var(--color-theme-light);
+}
+
+.tabbed-code-tab.active {
+  color: var(--color-theme-light);
+  border-bottom-color: var(--color-theme-accent-light);
+}
+
+.tabbed-code-tab[disabled] {
+  color: var(--color-theme-light);
+  cursor: default;
+  background-color: transparent;
+  pointer-events: none;
+  border-bottom: none;
+}
+
+.tabbed-code-panels {
+  position: relative;
+}
+
+.tabbed-code-content {
+  @apply hidden;
+}
+
+.tabbed-code-content.active {
+  @apply block;
+}
+
+.tabbed-code-content pre {
+  @apply m-0 rounded-none border-0;
+  background-color: transparent;
+}
+
+.tabbed-code-content code {
+  @apply p-0 bg-transparent;
+  background-color: transparent;
+}
