@@ -28,8 +28,8 @@ getPrefix() {
 }
 
 
-short=b,n,p,h
-long=blog,note,project,help
+short=b:,n:,p:,h
+long=blog:,note:,project:,help
 opts=`getopt \
     --options $short \
     --long $long \
@@ -43,9 +43,9 @@ eval set -- "$opts"
 
 while (( $# )); do
   case "$1" in
-    -b | --blog ) contentType=blog; shift; name=$2; shift ;;
-    -n | --note ) contentType=note; shift; name=$2; shift ;;
-    -p | --project ) contentType=project; shift; name=$2; shift ;;
+    -b | --blog ) contentType=blog; shift; name=$1; shift ;;
+    -n | --note ) contentType=note; shift; name=$1; shift ;;
+    -p | --project ) contentType=project; shift; name=$1; shift ;;
     -h | --help ) showHelp; exit 1 ;;
     -- ) break ;;
     * ) break ;;
@@ -54,8 +54,8 @@ done
 
 frontmatter="---
 title: \"\"
-slug: \"\"
 description: \"\"
+slug: \"\"
 longDescription: \"\"
 cardImage: \"\"
 tags: []
