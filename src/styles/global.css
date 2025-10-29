@@ -305,6 +305,10 @@
     @apply p-4 rounded-lg overflow-x-auto;
     background-color: var(--color-theme-dark-muted);
     color: var(--color-theme-light);
+    /* Ensure code blocks never wrap */
+    white-space: pre;
+    word-break: normal;
+    overflow-wrap: normal;
   }
 
   :where(.dark, .dark *) pre {
@@ -315,6 +319,19 @@
   pre code {
     @apply p-0 bg-transparent;
     color: inherit;
+    /* Ensure inner code also doesn't wrap */
+    white-space: pre;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
+
+  /* Inside typography .prose content, prevent code wrapping */
+  .prose pre,
+  .prose pre code,
+  .prose code[class*="language-"] {
+    white-space: pre;
+    word-break: normal;
+    overflow-wrap: normal;
   }
 }
 
