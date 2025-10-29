@@ -24,7 +24,7 @@ const repoName = repoUrl?.includes("github") ? "GitHub" : repoUrl?.includes("git
       {title}
     </Anchor>
     {(repoUrl || demoUrl) && (
-      <div class="flex flex-row gap-5">
+      <div class="flex flex-row gap-5 md:flex hidden">
         <span>
           {repoUrl ? <Anchor url={repoUrl} external hoverUnmute>{repoName}</Anchor> : null}
         </span>
@@ -33,7 +33,7 @@ const repoName = repoUrl?.includes("github") ? "GitHub" : repoUrl?.includes("git
         </span>
       </div>
     ) || (
-      <div class="flex flex-row gap-10 theme-muted">
+      <div class="flex flex-row gap-10 theme-muted hidden md:flex">
         <span class="theme-muted theme-transition">
           {published ? processDate(published) : null}
           {updated ? ` [${processDate(updated)}]` : null}
@@ -41,8 +41,16 @@ const repoName = repoUrl?.includes("github") ? "GitHub" : repoUrl?.includes("git
       </div>
     )}
   </div>
-  <p class="">
-    {description}
-  </p>
-  <Tags tags={tags}/>
+  {description && (
+    <p class="">
+      {description}
+    </p>
+  )}
+  {tags && tags.length > 0 && <Tags tags={tags}/>}
+  <div class="flex flex-row gap-10 theme-muted md:hidden">
+    <span class="theme-muted theme-transition">
+      {published ? processDate(published) : null}
+      {updated ? ` [${processDate(updated)}]` : null}
+    </span>
+  </div>
 </div>
