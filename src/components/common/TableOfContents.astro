@@ -1,0 +1,42 @@
+---
+import type { MarkdownHeading } from "astro";
+
+type Props = {
+  headings?: MarkdownHeading[];
+  class?: string;
+};
+
+const { headings = [], class: customClass } = Astro.props;
+
+// Only include h2/h3 for brevity
+const filtered = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+
+<aside class:list={[
+  "hidden", 
+  "md:block", 
+  "md:sticky", 
+  "md:top-40", 
+  "md:max-h-[calc(100vh-8rem)]", 
+  "md:overflow-auto", customClass]} 
+  aria-label="Table of contents">
+  {filtered.length > 0 && (
+    <nav class="pr-2">
+      <ul class="space-y-1 text-sm">
+        {filtered.map((h) => (
+          <li class:list={[h.depth === 3 ? "pl-4" : "pl-0"]}>
+            <a href={"#" + h.slug} class="hover-unmute block py-1">
+              {h.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )}
+  {filtered.length === 0 && (
+    <div class="hidden"></div>
+  )}
+  
+</aside>
+
+
