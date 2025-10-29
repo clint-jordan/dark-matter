@@ -11,7 +11,7 @@ const recentNotes = (await getFeaturedPosts("notes"));
 <div class="space-y-0 mb-20">
   <div class="flex justify-between items-center pb-5">
     <h2 class="text-3xl sm:text-4xl font-display theme-text">Recent Notes</h2>
-    <Anchor url={getUrl("notes")} additonalClasses="theme-accent hover:theme-text transition-colors" hoverUnderline>
+    <Anchor url={getUrl("notes")} additonalClasses="theme-accent hover:theme-text transition-colors hidden md:block" hoverUnderline>
       View all notes →
     </Anchor>
   </div>
