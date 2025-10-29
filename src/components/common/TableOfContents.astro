@@ -25,7 +25,11 @@ const filtered = headings.filter((h) => h.depth === 2 || h.depth === 3);
       <ul class="space-y-1 text-sm">
         {filtered.map((h) => (
           <li class:list={[h.depth === 3 ? "pl-4" : "pl-0"]}>
-            <a href={"#" + h.slug} class="hover-unmute block py-1">
+            <a 
+              href={"#" + h.slug} 
+              class="toc-link block py-1 transition-colors duration-200 hover-unmute"
+              data-target={h.slug}
+            >
               {h.text}
             </a>
           </li>
@@ -37,6 +41,39 @@ const filtered = headings.filter((h) => h.depth === 2 || h.depth === 3);
     <div class="hidden"></div>
   )}
   
+  <script>
+    function updateActiveTOCLink() {
+      const headings = document.querySelectorAll('h2, h3');
+      const tocLinks = document.querySelectorAll('.toc-link');
+      
+      let current = '';
+      
+      headings.forEach((heading) => {
+        const rect = heading.getBoundingClientRect();
+        if (rect.top <= 100) {
+          current = heading.id;
+        }
+      });
+      
+      tocLinks.forEach((link) => {
+        if (link.getAttribute('data-target') === current) {
+          // Add active state
+          link.classList.remove('hover-unmute');
+          link.classList.add('theme-text');
+        } else {
+          link.classList.remove('theme-text');
+          link.classList.add('hover-unmute');
+        }
+        
+      });
+    }
+    
+    // Update on scroll
+    window.addEventListener('scroll', updateActiveTOCLink);
+    
+    // Update on page load
+    document.addEventListener('DOMContentLoaded', updateActiveTOCLink);
+  </script>
 </aside>
 
 
