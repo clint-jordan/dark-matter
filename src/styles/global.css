@@ -353,9 +353,14 @@
   @apply text-gray-900 dark:text-gray-100;
 }
 
-.prose tbody tr:nth-child(even) {
-  @apply bg-gray-50 dark:bg-gray-900;
-}
+  .prose tbody tr:nth-child(even) {
+    @apply bg-gray-50 dark:bg-gray-900;
+  }
+
+  /* Scroll offset for anchor links */
+  html {
+    scroll-padding-top: 4rem;
+  }
 
 /* GitHub alert blocks */
 .markdown-alert {

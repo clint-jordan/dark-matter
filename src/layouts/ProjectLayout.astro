@@ -9,10 +9,12 @@ import { siteConfig } from "../site.config";
 import SEO from "../components/common/SEO.astro";
 import ContentLayoutHeader from "../components/common/ContentLayoutHeader.astro";
 import DraftBox from "../components/common/DraftBox.astro";
+import TableOfContents from "../components/common/TableOfContents.astro";
+import type { MarkdownHeading } from "astro";
 
-type Props = { frontmatter: PostFrontmatter };
+type Props = { frontmatter: PostFrontmatter; headings?: MarkdownHeading[] };
 
-const { frontmatter } = Astro.props;
+const { frontmatter, headings } = Astro.props;
 const publishDate = processDate(frontmatter.published);
 const updateDate = processDate(frontmatter.updated);
 const tags = frontmatter.tags;
@@ -25,19 +27,26 @@ const isDraft = frontmatter.draft;
   <Fragment slot="head">
     <SEO configKey="project" />
   </Fragment>
-  <Section class="pt-8">
-    {isDev && isDraft && <DraftBox />}
-    <ContentLayoutHeader 
-      title={frontmatter.title} 
-      tags={tags} 
-      publishDate={publishDate} 
-      updateDate={updateDate} 
-      repoUrl={frontmatter.repoUrl}
-      demoUrl={frontmatter.demoUrl}
-    />
-    <Prose>
-      <slot />
-    </Prose>
-    <p class="pt-8">- {config.personal.name}</p>
-  </Section>
+  <div class="mx-auto max-w-6xl">
+    <div class="flex flex-row gap-8">
+      <div class="flex-1 min-w-0">
+        <Section class="pt-8">
+          {isDev && isDraft && <DraftBox />}
+          <ContentLayoutHeader 
+            title={frontmatter.title} 
+            tags={tags} 
+            publishDate={publishDate} 
+            updateDate={updateDate} 
+          />
+          <Prose class="max-w-none">
+            <slot />
+          </Prose>
+          <p class="pt-8">- {config.personal.name}</p>
+        </Section>
+      </div>
+      <div class="hidden xl:block w-80 flex-shrink-0">
+        <TableOfContents headings={headings}/>
+      </div>
+    </div>
+  </div>
 </Layout>
