@@ -1,12 +1,9 @@
 ---
 title: "Initial VM Setup for RHCSA"
-description: ""
 slug: "rhcsa-init"
-longDescription: ""
-cardImage: ""
 tags: [linux, rhcsa]
 published: 2025-10-29T14:12:42+00:00
-# updated: 
+updated: 2025-10-31T12:56:27+00:00
 feature: false
 draft: false
 ---
@@ -32,3 +29,22 @@ echo '"\e[A": history-search-backward' >> .inputrc
 echo '"\e[B": history-search-forward' >> .inputrc
 exec $SHELL
 ```
+
+## Enable NOPASSWD for wheel group
+
+Create file in `/etc/sudoers.d`
+```bash
+echo '%wheel ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
+```
+
+Ensure sudoers can be parsed
+```bash
+visudo -cf /etc/sudoers
+```
+
+Change permissions of wheel file
+```bash
+chmod 0440 /etc/sudoers.d/wheel
+```
+
+Logout or Reboot

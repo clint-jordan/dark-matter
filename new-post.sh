@@ -24,12 +24,34 @@ rootDir=$(dirname "$0")
 
 getPrefix() {
     latest=$(find $contentDir -type f -name "*.md" | xargs -I {} basename {} | sort -r | head -n 1 | cut -d "-" -f 1)
-    printf "%03d" $((latest + 1))
+    # Remove leading zeros to force decimal interpretation
+    latest=${latest##0}
+    # Handle case where all digits were zeros
+    [ -z "$latest" ] && latest=0
+    printf "%03d" $((10#$latest + 1))
+}
+
+getTimestamp() {
+    date +"%Y-%m-%dT%H:%M:%S+00:00"
+}
+
+updatePost() {
+    f=$rootDir/$1
+    if [[ ! -f "$f" ]]; then
+        echo "Error: post "$f" not found"
+        exit 1
+    fi
+    stampRegex='[0-9]*-[0-9]*-[0-9]*T[0-9]*:[0-9]*:[0-9]*.[0-9]*:[0-9]*'
+    if ! grep -q "^updated:.*$stampRegex" "$f"; then
+        sed -i "/^published:.*$stampRegex/a\updated: $(getTimestamp)" "$f"
+    else
+        sed -i "s|^updated:.*$stampRegex|updated: $(getTimestamp)|" "$f"
+    fi
 }
 
 
-short=b:,n:,p:,h
-long=blog:,note:,project:,help
+short=b:,n:,p:,u:,h
+long=blog:,note:,project:,update:,help
 opts=`getopt \
     --options $short \
     --long $long \
@@ -46,6 +68,7 @@ while (( $# )); do
     -b | --blog ) contentType=blog; shift; name=$1; shift ;;
     -n | --note ) contentType=note; shift; name=$1; shift ;;
     -p | --project ) contentType=project; shift; name=$1; shift ;;
+    -u | --update ) shift; updatePost $1; exit 1 ;;
     -h | --help ) showHelp; exit 1 ;;
     -- ) break ;;
     * ) break ;;
@@ -59,8 +82,7 @@ slug: \"\"
 longDescription: \"\"
 cardImage: \"\"
 tags: []
-published: $(date +"%Y-%m-%dT%H:%M:%S+00:00")
-# updated: 
+published: $(getTimestamp)
 feature: false
 draft: true
 ---"
