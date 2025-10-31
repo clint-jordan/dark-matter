@@ -49,7 +49,7 @@ history
 Repeat a command from history
 
 ```bash
-!<line-number>
+!{line-number}
 ```
 
 Commit session history
@@ -60,7 +60,7 @@ history -w
 Remove a specific command from history
 
 ```bash
-history -d <line number>
+history -d {line number}
 ```
 
 Clear history

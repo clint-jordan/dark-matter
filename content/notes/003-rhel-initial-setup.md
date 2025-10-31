@@ -3,7 +3,7 @@ title: "Initial VM Setup for RHCSA"
 slug: "rhcsa-init"
 tags: [linux, rhcsa]
 published: 2025-10-29T14:12:42+00:00
-updated: 2025-10-31T12:56:27+00:00
+updated: 2025-10-31T16:24:27+00:00
 feature: false
 draft: false
 ---
@@ -16,6 +16,13 @@ Settings -> Power -> Power Saving -> Set to Never
 ```bash
 gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
 ```
+
+## Set vim mode
+```bash
+echo "set editing-mode vi" >> ~/.inputrc
+echo "set -o vi" >> ~/.inputrc
+```
+
 
 ## Set aliases
 ```bash
