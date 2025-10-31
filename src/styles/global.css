@@ -206,8 +206,10 @@
     transition: width 0.3s ease;
   }
 
-  .hover-underline:hover::after {
-    width: 100%;
+  @media (min-width: 768px) {
+    .hover-underline:hover::after {
+      width: 100%;
+    }
   }
 
   .hover-underline.nav {
@@ -233,14 +235,16 @@
     }
   }
 
-  .hover-unmute:hover {
-    color: var(--color-theme-dark);
-    :where(.dark, .dark *) & {
-      color: var(--color-theme-light);
-    }
-    fill: var(--color-theme-dark) !important;
-    :where(.dark, .dark *) & {
-      fill: var(--color-theme-light) !important;
+  @media (min-width: 768px) {
+    .hover-unmute:hover {
+      color: var(--color-theme-dark);
+      :where(.dark, .dark *) & {
+        color: var(--color-theme-light);
+      }
+      fill: var(--color-theme-dark) !important;
+      :where(.dark, .dark *) & {
+        fill: var(--color-theme-light) !important;
+      }
     }
   }
 
