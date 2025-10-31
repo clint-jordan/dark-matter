@@ -148,7 +148,7 @@ Search and replace
 sed 's|anna|otto|g' {file}
 ```
 
-Search and replace modify file in place
+Search and replace modifying file in place
 ```bash
 sed -i 's|anna|otto|g' {file}
 ```
