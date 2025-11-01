@@ -3,7 +3,7 @@ title: "Initial VM Setup for RHCSA"
 slug: "rhcsa-init"
 tags: [linux, rhcsa]
 published: 2025-10-29T14:12:42+00:00
-updated: 2025-10-31T16:24:27+00:00
+updated: 2025-11-01T06:58:40+00:00
 feature: false
 draft: false
 ---
@@ -37,21 +37,29 @@ echo '"\e[B": history-search-forward' >> .inputrc
 exec $SHELL
 ```
 
-## Enable NOPASSWD for wheel group
-
-Create file in `/etc/sudoers.d`
-```bash
-echo '%wheel ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
+## Avoid repetitive password input
+Enable NOPASSWD for wheel only for throw away virtual machines.
+Create file in `/etc/sudoers.d` with `visudo /etc/sudoers.d/wheel`
+```text
+%wheel ALL=(ALL:ALL) NOPASSWD: ALL
+```
+In a 'real' environment, increase authentication token expiration to avoid
+Create file in `/etc/sudoers.d` with `visudo /etc/sudoers.d/defaults`
+repetitive password input.
+```text
+Defaults timestamp_type=global,timestamp_timeout=240
 ```
 
-Ensure sudoers can be parsed
+Ensure sudoers can be parsed if `visudo` was not used to create drop-in files.
 ```bash
 visudo -cf /etc/sudoers
 ```
 
-Change permissions of wheel file
+Set permissions of wheel file if `visudo` was not used and **!!!only if sudoers
+file was successfully parsed!!!**
 ```bash
 chmod 0440 /etc/sudoers.d/wheel
+chmod 0440 /etc/sudoers.d/defaults
 ```
 
 Logout or Reboot

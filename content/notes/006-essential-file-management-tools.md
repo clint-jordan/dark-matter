@@ -123,7 +123,7 @@ Compress with xz
 tar -cJvf archive.tar.xz /home /etc
 ```
 
-Determine compression method, if any, of ambiguous extention
+Determine compression method, if any, of ambiguous extension
 ```bash
 file archive.tar
 ```
@@ -134,3 +134,10 @@ file archive.tar
 - bzip2 (-j) better compression than gzip, but slower
 - xz (-J) best compression, but much slower
 
+## Lab Exercise
+- Use `tar` to create a compressed archive of all files in the /etc and /opt directories
+- List the contents of the new archive
+- Create a symbolic link to the new archive in the /tmp directory
+- Extract the archive contents into ~/tmp
+- Remove the archive from your home directory. What happens to the symbolic link?
+- Remove ~/tmp

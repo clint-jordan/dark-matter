@@ -110,7 +110,7 @@ Regex man page
 man 7 regex
 ```
 
-- `^` beggining of the line: `grep '^|' myfile`
+- `^` beginning of the line: `grep '^|' myfile`
 - `$` end of the line: `grep 'anna$' myfile`
 - `\b` end of word: `grep '^lea\b' myfile` will find lines starting with lea, but not with leanne
 - `.` one character: `grep '^.$' myfile` will find lines with one of any character
@@ -168,9 +168,20 @@ Insert line before match (`i\` insert)
 sed -i "/^foo/i\bar" {file}
 ```
 
-
-
-
-
-
-
+## Lab Exercise
+- Use `head` and `tail` to display the 5th line of the file /etc/passwd
+- Use `sed` to display the 5th line of the file /etc/passwd
+- Create a file with the following contents:
+```text
+foo
+bar
+bing
+bang
+```
+- Use `sed` to replace 'foo' with 'fooski'. Do not modify the file in place.
+- Use `sed` to insert 'bob' on a separate line above 'bing'. Modify the file in place
+- Use `sed` to insert 'joe' on a separate line below 'bob'. Modify the file in place
+- Use `awk` to filter the last column out of `ps aux`
+- Use `grep` to show the names of all files in /etc that have lines that contain 'root' as a word
+- Use `grep` to show all lines from all files in /etc that contain exactly 3 characters
+- Use `grep` to find all files that contain the string 'alex', but exclude 'alexander'

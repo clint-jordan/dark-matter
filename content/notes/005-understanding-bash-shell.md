@@ -133,3 +133,20 @@ shells and `bashrc` configurations are sourced by shells opened after logging
 in.  Configurations in `bashrc` should be specific to the interactive shell
 environment like aliases, functions, prompt, etc. Configurations that should be
 available to all process started during a login session should be in `profile`.
+
+## Lab Exercise
+
+- If a user requires a variable to be defined every time they login, where should that variable be defined?
+  - `~/.bash_profile` is sourced once per login
+  - `echo "export varName=varValue" >> .bash_profile`
+- If a user requires an alias to be present in every terminal session, where should that alias be defined?
+  - `~/.bashrc`
+- If a user requires a function to be present in every terminal session, where should that function be defined?
+  - `~/.bashrc`
+- If the default history file needs to grow to 2500 entries for all users, what variable needs to be defined and where?
+ - `$HISTFILESIZE` should be modified in a drop-in file in /etc/profile.d
+- If the history file needs to grow to 10000 entries for a specific user, what variable needs to be defined and where?
+ - `$HISTFILESIZE` in the user's ~/.bash_profile
+- If the in-memory history needs to be limited to 250 entries for a specific
+  user, what variable needs to be defined and where?
+ - `$HISTSIZE` in the user's ~/.bash_profile

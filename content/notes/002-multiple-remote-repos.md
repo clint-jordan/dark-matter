@@ -33,10 +33,10 @@ git clone git@github.com:username/my-awesome-website
 git remote add theme git@github.com:username/my-awesome-theme
 ```
 
-#### Create an awsome feature
+#### Create an awesome feature
 
 ```
-git checkout -b awsome-feature 
+git checkout -b awesome-feature
 ```
 
 #### Push the feature to the second repo

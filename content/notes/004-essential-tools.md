@@ -8,15 +8,21 @@ draft: false
 
 ## Search man pages
 ```bash
-man -k <search-string>
+man -k {search-string}
 ```
 
 ## Filter for user commands
 ```bash
-man -k <search-string> | grep 1
+man -k {search-string} | grep 1
 ```
 
 ## Filter for admin commands
 ```bash
-man -k <search-string> | grep 8
+man -k {search-string} | grep 8
 ```
+
+## Lab Exercise
+- Locate the `man` page that shows how to set a password
+- What man section contains admin commands?
+- What man section contains user commands?
+- What man section contains system calls?
