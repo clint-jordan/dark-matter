@@ -340,6 +340,21 @@
   }
 }
 
+/* Override prose-code color for code blocks to ensure proper contrast */
+/* Code blocks always have dark background, so text should always be light */
+/* Placed outside @layer base to come after Tailwind prose styles in cascade */
+pre code,
+.prose pre code,
+pre.prose code {
+  color: var(--color-theme-light);
+}
+
+:where(.dark, .dark *) pre code,
+:where(.dark, .dark *) .prose pre code,
+:where(.dark, .dark *) pre.prose code {
+  color: var(--color-theme-light);
+}
+
 /* Table styling for dark mode */
 .prose table {
   @apply border-collapse;
