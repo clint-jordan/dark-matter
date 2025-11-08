@@ -9,6 +9,7 @@ showHelp() {
     echo "  -b, --blog    Create a blog post"
     echo "  -n, --note    Create a note"
     echo "  -p, --project Create a project"
+    echo "  -u, --update  Update post timestamp"
     echo "  -h, --help    Show this help message"
     exit 1
 }

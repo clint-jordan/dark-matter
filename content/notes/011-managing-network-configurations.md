@@ -157,6 +157,7 @@ nmcli con add con-name mynewconnection ifname ens33 ipv4.addresses 10.0.0.10/24 
   - `ss -tu`
   - `ss -tuna`
   - `ss -tunap`
+- `netstat -tulnp`
 
 ## Lab Exercise
 - Set the hostname for your server to rhcsaserver.example.com
