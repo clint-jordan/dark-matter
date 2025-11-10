@@ -24,14 +24,14 @@ draft: false
 ## Process states
 - When a new process is started (forked) it is scheduled and after being
   scheduled, it will get a runnable state (R)
-  - In this tate it is waiting in the queue to be scheduled
+  - In this state it is waiting in the queue to be scheduled
 - Runnable processes will get a time slice, which allows them to get a running
   state in either kernel space or user space
 - Runnable processes can get preempted or rescheduled
-  - In that case, they will return to a runnable state and wait tin the queue for
+  - In that case, they will return to a runnable state and wait in the queue for
     a new time slice
 - A runnable process can be stopped (ctrl-z) and will show as TASK_STOPPED (T),
-  and after being stoped it can recieve another signal to resume and return to a
+  and after being stopped it can receive another signal to resume and return to a
   runnable state
 - While running, the process may have to wait
   - This is also referred to as "blocking" state, but "blocking" is not an official state in the Linux kernel
@@ -44,7 +44,7 @@ draft: false
   where it signals the parent process that it exits and all resources except for
   the PID are released.
 - In the next stage the process will enter the EXIT_DEAD (X) state. In this
-  state it will be reqped and all remaining processes will be cleaned up
+  state it will be reaped and all remaining processes will be cleaned up
   - When a process gets reaped, the parent process is calling the wait() system
     call to collect the exit status of the child process, after which it can be
     cleaned up
