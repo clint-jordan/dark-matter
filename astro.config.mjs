@@ -4,6 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { siteConfig } from "./src/site.config";
 import remarkGitHubAlerts from "remark-github-markdown-alerts";
 import rehypeExternalLinks from "rehype-external-links";
+import remarkCollapsible from "./src/plugins/remark-collapsible.mjs";
 
 // https://astro.build/config
 export default defineConfig({
@@ -24,7 +25,7 @@ export default defineConfig({
     },
     gfm: true,
     smartypants: true,
-    remarkPlugins: [remarkGitHubAlerts],
+    remarkPlugins: [remarkGitHubAlerts, remarkCollapsible],
         rehypePlugins: [
           [rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }]
         ],

@@ -449,6 +449,21 @@ pre.prose code {
   list-style-type: square;
 }
 
+/* Collapsible details/summary styling */
+.prose details summary {
+  cursor: pointer;
+  user-select: none;
+  transition: color var(--theme-transition-duration) var(--theme-transition-timing-function);
+}
+
+.prose details summary:hover {
+  color: var(--color-theme-accent-dark);
+}
+
+:where(.dark, .dark *) .prose details summary:hover {
+  color: var(--color-theme-accent-light);
+}
+
 /* Tabbed Code Blocks */
 .tabbed-code-blocks {
   @apply my-6 rounded-lg overflow-hidden;
