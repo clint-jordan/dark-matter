@@ -419,15 +419,33 @@ pre.prose code {
   display: none;
 }
 
-ul li {
-  list-style-type: disc;
+
+
+
+/* ordered lists */
+.prose ol {
+  padding-left: 1.25rem;
 }
 
-ul ul li {
+.prose ol li {
+  padding-left: 0.00rem;
+}
+
+/* unordered lists */
+.prose ul {
+  padding-left: 1.25rem;
+}
+
+.prose ul li {
+  list-style-type: disc;
+  padding-left: 0.4rem;
+}
+
+.prose ul ul li {
   list-style-type: circle;
 }
 
-ul ul ul li {
+.prose ul ul ul li {
   list-style-type: square;
 }
 
