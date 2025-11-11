@@ -59,16 +59,82 @@ Knowledge Check
 1. How much of the filesystem size can be used by logs by default?
 1. How much of the filesystem free size can be used by logs by default?
 
-Answers
+:::details Answers
 1. Persistent logs are handled by the rsyslog service
 1. /usr/lib/systemd/journal.conf
-1. Storage=auto
+1. If Storage=auto (the default), create the /var/log/journal directory and
+   flush the journal
 1. Storage options
-   - auto:
+   - auto: will write persistent logs to /var/log/journal if the directory
+     exists, otherwise will write volatile logs to /run/log/journal
    - persistent: stores journals in /var/log/journal
    - volatile: stores journals in the temp /run/log/journal directory
    - none: doesn't use any storage for the journal at all
-1. Log files rotated monthly default?
-1. How much of the filesystem size can be used by logs by default?
-1. How much of the filesystem free size can be used by logs by default?
+1. Log files are rotated monthly by default
+1. 10%
+1. 15%
 
+:::
+
+```bash
+journalctl | grep -E 'Runtime Journal|System Journal' # check current settings
+```
+
+Make the system journal logs persistent
+```bash
+grep 'Storage=' /usr/lib/systemd/journal.conf
+mkdir /var/log/journal
+systemctl restart systemd-journal-flush.service
+ls /var/log/journal
+```
+
+## Rsyslog
+Knowledge Check
+- Where is the configuration file for rsyslog?
+- How should you modify the rsyslog configuration?
+- What does each logger line contain?
+- Where are log files normally located?
+
+:::details Answers
+1. /etc/rsyslog.conf
+1. Add drop-in files to /etc/rsyslog.d
+1. Each logger line contains
+   - facility
+   - severity
+   - destination
+1. /var/log
+
+:::
+
+
+## Logrotate
+
+Knowledge Check
+1. Where are the log rotate configuration files
+
+:::details Answers
+1. /etc/logrotate.conf and /etc/logrotate.d
+
+:::
+
+## Lab Exercise
+1. Make sure the systemd journal persistent
+1. Create an entry in rsyslog that writes all messages with a severity of error
+   or higher to /var/log/error
+1. Ensure that /var/log/error is rotated on a monthly basis, and the last 12
+   logs are kept before they are rotated out
+
+:::details Solution
+```bash
+mkdir /var/log/journal
+systemctl restart systemd-journal-flush.service
+```
+
+```bash
+echo "*.err /var/log/error" > /etc/rsyslog.d/error.conf
+systemctl restart rsyslog
+logger -p err "error message"
+tail /var/log/error
+``````
+
+:::
