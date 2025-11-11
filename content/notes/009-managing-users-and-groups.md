@@ -3,18 +3,36 @@ title: "Managing Users and Groups"
 tags: [linux, rhcsa]
 published: 2025-11-01T07:30:25+00:00
 feature: false
-draft: false
+draft: true
 ---
 
 ## User Properties
-User properties are managed in /etc/passwd and /etc/shadow
-- Name: name of the account
-- Password: authentication secret, may be disabled
-- UID: a unique identifier for users
-- GID: ID of the primary group
-- GECOS: additional non-mandatory information about the user
-- Home directory: environment where users create personal files
-- Shell: the program that will be started after successful authentication
+
+[Fedora Docs](https://docs.fedoraproject.org/en-US/fedora/f40/system-administrators-guide/basic-system-configuration/Managing_Users_and_Groups/)
+
+Knowledge Check
+- Where are user properties managed?
+- Where are user password properties managed?
+
+<!-- Answer -->
+<!-- - User properties are managed in /etc/passwd and /etc/shadow -->
+<!--   - `/etc/passwd` contains basic -->
+<!--     - Name: name of the account -->
+<!--     - Password: authentication secret, may be disabled -->
+<!--     - UID: a unique identifier for users -->
+<!--     - GID: ID of the primary group -->
+<!--     - GECOS: additional non-mandatory information about the user -->
+<!--     - Home directory: environment where users create personal files -->
+<!--     - Shell: the program that will be started after successful authentication -->
+<!--   - /etc/shadow -->
+<!--     - Username -->
+<!--     - Password -->
+<!-- 		- Last password change -->
+<!-- 		- Minimum - minimum days between password changes -->
+<!-- 		- Maximum - maximum days password is valid -->
+<!-- 		- Warn - number of days before expiration that the user is warned  -->
+<!-- 		- Inactive - days after expiration that the user is disabled -->
+<!-- 		- Expire - expiration date of account (expressed as days since Jan 1, 1970) -->
 
 ## Create and Manage Users
 - useradd: add a user
@@ -53,12 +71,20 @@ usermod -s /sbin/nologin application
 
 ### Managing group access
 
-- For filesystem permission purposes, each user must be a member of at least one group
-- Primary group membership is managed through /etc/passwd
-- The user primary group becomes group-owner if a user creates a file
-- Secondary group membership is managed through /etc/group
-- Temporarily set primary group membership using `newgrp`
-- Use `id` to see which groups a user is a member of
+Knowledge Check
+- Explain the difference between primary and secondary groups
+- Where are primary groups managed?
+- Where are secondary groups managed?
+- How can you temporarily change the primary group?
+- How can you print all the groups that a user is a member of?
+
+<!-- Answers -->
+<!-- - For filesystem permission purposes, each user must be a member of at least one group -->
+<!-- - Primary group membership is managed through /etc/passwd -->
+<!-- - The user primary group becomes group-owner if a user creates a file -->
+<!-- - Secondary group membership is managed through /etc/group -->
+<!-- - Temporarily set primary group membership using `newgrp` -->
+<!-- - Use `id` to see which groups a user is a member of -->
 
 ## Creating and Managing Groups
 
@@ -67,15 +93,15 @@ usermod -s /sbin/nologin application
 - groupdel: delete a group
 
 
-Create a new group, support
+Create a new group, support-desk
 ```bash
-groupadd support
+groupadd support-desk
 ```
 
-Add user, linda, to group, support. Without `-a` (append) the current list of
+Add user, somebody, to group, support. Without `-a` (append) the current list of
 groups would be overwritten.
 ```bash
-usermod -aG support linda
+usermod -aG support somebody
 ```
 
 Find all members of a group, support
@@ -85,16 +111,16 @@ grep support /etc/group
 
 ### Managing password properties
 
-Set password age properties for user, linda
+Set password age properties for user, somebody
 ```bash
-chage linda
+chage somebody
 ```
 
 ## Lab Exercise
 - Ensure that new users are required to reset their passwords every 90 days
 - Ensure that all new users get an empty file, newfile, created in their home directory
-- Create users anna, anouk, linda, and lisa
-- Set the passwords for anna and anouk, but disable the passwords for linda and lisa
-- Create the groups profs and students. Make anna and anouk members of profs.
-  Make linda and lisa members of students.
+- Create users andrew, peter, sally, and susan
+- Set the passwords for andrew and sally, but disable the passwords for peter and susan
+- Create the groups engineers and designers. Make andrew and sally members of engineers.
+  Make peter and susan members of designers.
 

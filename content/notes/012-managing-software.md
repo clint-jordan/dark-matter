@@ -4,7 +4,7 @@ tags: [linux, rhcsa]
 published: 2025-11-03T14:08:28+00:00
 updated: 2025-11-08T16:24:39+00:00
 feature: false
-draft: false
+draft: true
 ---
 
 ## DNF and Flatpak Use Cases

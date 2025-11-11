@@ -3,7 +3,7 @@ title: "Managing Network Configurations"
 tags: [linux, rhcsa]
 published: 2025-11-01T15:15:09+00:00
 feature: false
-draft: false
+draft: true
 ---
 
 ## IPv4 Networking

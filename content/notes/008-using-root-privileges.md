@@ -3,7 +3,7 @@ title: "Using root Privileges"
 tags: [linux, rhcsa]
 published: 2025-11-01T06:08:37+00:00
 feature: false
-draft: false
+draft: true
 ---
 
 ## Becoming root
@@ -41,19 +41,19 @@ Set global authentication timeout.
 Defaults timestamp_type=global,timestamp_timeout=60
 ```
 
-Set the authentication timeout to 60 minutes for user, linda, only.
+Set the authentication timeout to 60 minutes for user, somebody, only.
 ```text
-Defaults:linda timestamp_timeout=60
+Defaults:somebody timestamp_timeout=60
 ```
 
-Always require a password from user, linda, only.
+Always require a password from user, somebody, only.
 ```text
-Defaults:linda timestamp_timeout=0
+Defaults:somebody timestamp_timeout=0
 ```
 
-Infinite timeout for user, linda, only.
+Infinite timeout for user, somebody, only.
 ```text
-Defaults:linda timestamp_timeout=-1
+Defaults:somebody timestamp_timeout=-1
 ```
 
 Set the authentication timeout to 240 minutes for group, wheel, only.
@@ -61,9 +61,9 @@ Set the authentication timeout to 240 minutes for group, wheel, only.
 Defaults:%wheel timestamp_timeout=240
 ```
 
-Do not require a password for user, ravi.
+Do not require a password for user, somebody.
 ```text
-Defaults:ravi !authenticate
+Defaults:somebody !authenticate
 ```
 
 Provide user, lisa, admin access to specific commands.
@@ -76,17 +76,17 @@ Allow group, users, to mount and unmount only the /dev/sdb device.
 %users ALL=/bin/mount /dev/sdb,/bin/umount /dev/sdb
 ```
 
-Allow user, linda, to set any user's password except root.
+Allow user, somebody, to set any user's password except root.
 ```text
-linda ALL=/usr/bin/passwd, ! /usr/bin/passwd root
+somebody ALL=/usr/bin/passwd, ! /usr/bin/passwd root
 ```
 
 ## Lab Exercise
-- Create a new user linda
-- Allow linda to perform the following user management tasks
+- Create a new user issac
+- Allow issac to perform the following user management tasks
   - create, modify, and delete users
   - change passwords for all users except root
-- Ensure that linda only needs to enter a password for admin operations every 60 minutes
+- Ensure that issac only needs to enter a password for admin operations every 60 minutes
 - Ensure that the default authentication timeout for all users with sudo privileges is 30 minutes
 - Ensure that the default authentication timeout for members of group wheel is 240 minutes
 

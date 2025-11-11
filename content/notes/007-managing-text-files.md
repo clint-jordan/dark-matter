@@ -3,7 +3,7 @@ title: "Managing Text Files"
 tags: [linux, rhcsa]
 published: 2025-10-31T14:46:54+00:00
 feature: false
-draft: false
+draft: true
 ---
 
 ## Viewing file contents

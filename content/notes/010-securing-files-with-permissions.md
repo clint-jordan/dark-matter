@@ -3,7 +3,7 @@ title: "Securing Files with Permissions"
 tags: [linux, rhcsa]
 published: 2025-11-01T09:20:20+00:00
 feature: false
-draft: false
+draft: true
 ---
 
 ## Changing File Ownership

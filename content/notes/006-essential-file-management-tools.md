@@ -3,7 +3,7 @@ title: "Essential File Management Tools"
 tags: [linux, rhcsa]
 published: 2025-10-31T12:59:02+00:00
 feature: false
-draft: false
+draft: true
 ---
 
 ## Filesystem Hierarchy Standard
