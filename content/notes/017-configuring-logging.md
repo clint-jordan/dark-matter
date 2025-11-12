@@ -118,23 +118,39 @@ Knowledge Check
 :::
 
 ## Lab Exercise
-1. Make sure the systemd journal persistent
+1. Make sure the systemd journal is persistent
 1. Create an entry in rsyslog that writes all messages with a severity of error
    or higher to /var/log/error
 1. Ensure that /var/log/error is rotated on a monthly basis, and the last 12
    logs are kept before they are rotated out
 
 :::details Solution
+#### Make sure the systemd journal is persistent
 ```bash
 mkdir /var/log/journal
 systemctl restart systemd-journal-flush.service
 ```
+or
+```bash
+mkdir /var/log/journal
+journalctl --flush
+```
 
+#### Create an entry in rsyslog
 ```bash
 echo "*.err /var/log/error" > /etc/rsyslog.d/error.conf
 systemctl restart rsyslog
 logger -p err "error message"
 tail /var/log/error
 ``````
+
+#### Add logrotate rule
+/etc/logrotate.d/error.conf
+```text
+/var/log/error {
+  monthly
+  rotate 12
+}
+```
 
 :::

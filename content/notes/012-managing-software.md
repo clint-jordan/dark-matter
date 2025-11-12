@@ -200,6 +200,22 @@ DO NOT DO THIS FOR PRACTICE VMs
   - Use `flatpak mask --remove` to remove the mask
 - `flatpak uninstall [--delete-data]` uninstalls and optionally deletes application data
 
+## Setting up offline repo 
+Note: This is for the lab environment only, not required for the exam.
+
+On virtual machine host:
+```bash
+scp -P 2222 rhel-10.0-x86_64-dvd.iso cjordan@localhost:~
+```
+
+On virtual machine (as root):
+```bash
+mv /home/cjordan/rhel-10.0-x86_64-dvd.iso /repo.iso
+cp /etc/fstab /etc/fstab.bak
+echo "/repo.iso /repo iso9660 defaults 0 0" >> /etc/fstab
+mount -a
+```
+
 
 ## Lab Exercise
 - Ensure your system is using an offline repository for base packages as well
