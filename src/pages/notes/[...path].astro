@@ -36,7 +36,7 @@ const { post } = Astro.props;
 const { Content, headings } = await render(post);
 ---
 
-<PostLayout frontmatter={post.data} headings={headings}>
+<PostLayout frontmatter={post.data} headings={headings} collectionName="notes">
   <Content />
 </PostLayout>
 

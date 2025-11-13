@@ -11,6 +11,7 @@ const baseSchema = z.object({
   feature: z.boolean().default(false),
   hide: z.boolean().default(false),
   draft: z.boolean().default(true),
+  hideTOC: z.boolean().default(false),
   isIndex: z.boolean().default(false),
   indexDirectory: z.string().optional(),
   published: z.date().transform((val) => new Date(val)).optional(),
