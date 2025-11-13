@@ -136,9 +136,8 @@ Create swap space from block device
 
 ## Lab Exercise
 - Create a partition with a size of 1GiB. Format it with ext4, and mount it
-persistently on /mounts/files using its UUID
+  persistently on /mounts/files using its UUID
 - Create a 512 MiB swap partition and mount it persistently
-
-:::details Solution
-
-:::
+- Create another 1G partition of type Linux Filesystem. Format it with XFS and
+  intentionally put an incorrect UUID number in the fstab with the default mount
+  settings. Reboot the VM and recover.
