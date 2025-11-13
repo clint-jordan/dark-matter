@@ -1,11 +1,7 @@
 
-import { getCollection, type CollectionEntry } from "astro:content";
-import { defineCollection, z } from "astro:content";
-import { glob } from "astro/loaders";
+import { getCollection } from "astro:content";
 
 import type { collections } from "../content.config";
-import { contentTypes } from "../content.config";
-import { siteConfig } from "../site.config";
 const baseUrl = import.meta.env.BASE_URL;
 const isDev = import.meta.env.DEV;
 

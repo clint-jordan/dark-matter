@@ -15,26 +15,17 @@ const baseSchema = z.object({
 });
 
 type ContentType = {
-  path: string,
   directory: string,
-  layout: string,
-  menuItem: boolean,
   schema: any,
 }
 
 class Content {
-  public path: string = ""
   public directory: string = ""
-  public layout: string = ""
-  public menuItem: boolean = false
   public schema: z.ZodObject<any>
   public collection: ReturnType<typeof defineCollection>;
 
   constructor(c: ContentType) {
-    this.path = c.path;
     this.directory = c.directory;
-    this.layout = c.layout;
-    this.menuItem = c.menuItem;
     this.schema = c.schema;
     this.collection = this.genContentCollection()
   }
@@ -60,26 +51,17 @@ class Content {
 
 export const contentTypes = {
   blog: new Content({
-    path: "/blog",
-    directory: "./content/blogs",
-    layout: "BlogLayout",
-    menuItem: true,
+    directory: "./content/blog",
     schema: baseSchema.extend({
       readTime: z.number().optional(),
     }),
   }),
   notes: new Content({
-    path: "/notes",
     directory: "./content/notes", 
-    layout: "NotesLayout",
-    menuItem: true,
     schema: baseSchema,
   }),
   projects: new Content({
-    path: "/projects",
     directory: "./content/projects",
-    layout: "ProjectLayout", 
-    menuItem: true,
     schema: baseSchema.extend({
       repoUrl: z.string().url().optional(),
       demoUrl: z.string().url().optional(),
