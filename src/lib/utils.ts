@@ -1,5 +1,6 @@
 
 import { getCollection } from "astro:content";
+import path from "path";
 
 import type { collections } from "../content.config";
 const baseUrl = import.meta.env.BASE_URL;
@@ -20,10 +21,21 @@ export const processDate = (date: Date | undefined | null) => {
 
 export const getPosts = async (collectionName: keyof typeof collections) => {
   const posts = await getCollection(collectionName);
-  return posts.map((post) => ({
-    ...post.data,
-    url: getUrl(`${collectionName}/${post.data.slug}`),
-  }))
+  return posts.map((post) => {
+    // Extract directory from entry.id for nested paths
+    const filePath = post.id;
+    const dir = path.dirname(filePath);
+    
+    // Construct URL with directory if present
+    const urlPath = dir !== '.' 
+      ? `${collectionName}/${dir}/${post.data.slug}`
+      : `${collectionName}/${post.data.slug}`;
+    
+    return {
+      ...post.data,
+      url: getUrl(urlPath),
+    };
+  })
   .filter((post) => {
     if (isDev) {
       return true;
