@@ -1,7 +1,6 @@
 ---
-import Anchor from "./common/Anchor.astro";
-import ThemeToggle from "./ThemeToggle.astro";
-import { siteConfig } from "../site.config";
+import Anchor from "./Anchor.astro";
+import { siteConfig } from "../../site.config";
 
 const config = siteConfig;
 const opacities = [];
@@ -15,7 +14,7 @@ for (let i = 10; i <= 70; i += 10) {
     <div class="flex flex-row sm:flex-row gap-4">
              {
          config.personal.githubProfile && (
-           <Anchor url={config.personal.githubProfile} noHover={true} aria-label={`${config.personal.name} GitHub Profile`}>
+           <Anchor url={config.personal.githubProfile} hoverUnderline={false} aria-label={`${config.personal.name} GitHub Profile`}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="32"
@@ -32,7 +31,7 @@ for (let i = 10; i <= 70; i += 10) {
       }
              {
          config.personal.twitterProfile && (
-           <Anchor url={config.personal.twitterProfile} noHover={true} aria-label={`${config.personal.name} Twitter Profile`}>
+           <Anchor url={config.personal.twitterProfile} hoverUnderline={false} aria-label={`${config.personal.name} Twitter Profile`}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="32"
@@ -49,7 +48,7 @@ for (let i = 10; i <= 70; i += 10) {
       }
              {
          config.personal.linkedinProfile && (
-           <Anchor url={config.personal.linkedinProfile} noHover={true} aria-label={`${config.personal.name} LinkedIn Profile`}>
+           <Anchor url={config.personal.linkedinProfile} hoverUnderline={false} aria-label={`${config.personal.name} LinkedIn Profile`}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="32"
