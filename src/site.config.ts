@@ -39,7 +39,7 @@ export const siteConfig = {
     cardImage: "/card-image.webp",
     keywords: ["web development", "design", "technology"],
   },
-  project: {
+  projects: {
     titleSuffix: "Projects",
     description: "",
     longDescription: "",

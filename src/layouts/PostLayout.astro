@@ -9,22 +9,33 @@ import SEO from "../components/common/SEO.astro";
 import ContentLayoutHeader from "../components/common/ContentLayoutHeader.astro";
 import DraftBox from "../components/common/DraftBox.astro";
 import TableOfContents from "../components/common/TableOfContents.astro";
+import SubCollectionLinks from "../components/common/SubCollectionLinks.astro"
 import type { MarkdownHeading } from "astro";
 
-type Props = { frontmatter: PostFrontmatter; headings?: MarkdownHeading[] };
 
-const { frontmatter, headings } = Astro.props;
+import type { collections } from "../content.config";
+
+type Props = { 
+  frontmatter: PostFrontmatter; 
+  headings?: MarkdownHeading[];
+  collectionName: keyof typeof collections;
+};
+
+const { frontmatter, headings, collectionName } = Astro.props;
 const publishDate = processDate(frontmatter.published);
 const updateDate = processDate(frontmatter.updated);
 const tags = frontmatter.tags;
 const config = siteConfig;
 const isDev = import.meta.env.DEV;
 const isDraft = frontmatter.draft;
+const hideTOC = frontmatter.hideTOC;
+const isIndex = frontmatter.isIndex;
+const indexDirectory = frontmatter.indexDirectory;
 ---
 
 <Layout>
   <Fragment slot="head">
-    <SEO configKey="notes" />
+    <SEO configKey={collectionName} />
   </Fragment>
   <div class="mx-auto max-w-6xl">
     <div class="flex flex-row gap-8">
@@ -39,13 +50,16 @@ const isDraft = frontmatter.draft;
           />
           <Prose class="max-w-none">
             <slot />
+            {isIndex && indexDirectory && <SubCollectionLinks collectionName={collectionName} indexDirectory={indexDirectory}/>}
           </Prose>
           <p class="pt-8">- {config.personal.name}</p>
         </Section>
       </div>
-      <div class="hidden xl:block w-80 flex-shrink-0">
-        <TableOfContents headings={headings}/>
-      </div>
+      {!hideTOC && (
+        <div class="hidden xl:block w-80 flex-shrink-0">
+          <TableOfContents headings={headings}/>
+        </div>
+      )}
     </div>
   </div>
 </Layout>
