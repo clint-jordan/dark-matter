@@ -6,7 +6,6 @@ export interface MetaData {
   cardImage: string;
   keywords: string[];
   allowSearch?: boolean;
-  url: string;
 }
 
 export const siteConfig = {
@@ -39,7 +38,6 @@ export const siteConfig = {
     longDescription: "",
     cardImage: "/card-image.webp",
     keywords: ["web development", "design", "technology"],
-    url: "/blog"
   },
   project: {
     titleSuffix: "Projects",
@@ -47,7 +45,6 @@ export const siteConfig = {
     longDescription: "",
     cardImage: "/card-image.webp",
     keywords: ["web development", "design", "technology"],
-    url: "/projects"
   },
   notes: {
     titleSuffix: "Notes",
@@ -55,7 +52,6 @@ export const siteConfig = {
     longDescription: "",
     cardImage: "/card-image.webp",
     keywords: ["web development", "design", "technology"],
-    url: "/notes"
   },
   cv: {
     titleSuffix: "CV",
@@ -72,7 +68,6 @@ export const siteConfig = {
     longDescription: "",
     cardImage: "/card-image.webp",
     keywords: ["web development", "design", "technology"],
-    url: "/search"
   },
   notFound: {
     titleSuffix: "404",

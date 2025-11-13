@@ -12,10 +12,15 @@ const {
 } = Astro.props;
 
 import { siteConfig } from "../../site.config"
-const baseUrl = import.meta.env.BASE_URL;
 const k = configKey && configKey in siteConfig ? configKey : "global";
 const config = siteConfig[k as keyof typeof siteConfig] as MetaData;
 const allowSearch = config.allowSearch !== undefined ? config.allowSearch : true;
+
+// Get the current page URL for canonical and og:url
+// Use the full URL from Astro, removing trailing slash except for root
+const currentUrl = Astro.url.pathname.endsWith("/") && Astro.url.pathname !== "/"
+  ? Astro.url.href.slice(0, -1)
+  : Astro.url.href;
 ---
 
 <title>{config.title ?? siteConfig.global.title}{config.titleSuffix ? ` • ${config.titleSuffix}` : ''}</title>
@@ -31,7 +36,7 @@ const allowSearch = config.allowSearch !== undefined ? config.allowSearch : true
 {!allowSearch && (
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
 )}
-<meta property="og:url" content={config.url} />
+<meta property="og:url" content={currentUrl} />
 <meta name="twitter:card" content={type} />
 <meta name="twitter:title" content={`${config.title}${config.titleSuffix ? ` • ${config.titleSuffix}` : ''}`} />
 <meta name="twitter:description" content={config.description} />
@@ -40,4 +45,4 @@ const allowSearch = config.allowSearch !== undefined ? config.allowSearch : true
 )}
 <meta http-equiv="content-language" content="en" />
 <meta name="language" content="English" />
-<link rel="canonical" href={`${baseUrl}${config.url}`} />
+<link rel="canonical" href={currentUrl} />
