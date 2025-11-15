@@ -27,6 +27,7 @@ export const siteConfig = {
   },
   global: {
     title: "John Doe",
+    navBarTitle: "John Doe",
     description: "",
     longDescription: "",
     cardImage: "/card-image.webp",
